@@ -1,4 +1,4 @@
-[gd_scene load_steps=44 format=4 uid="uid://dccqy2dqnnw7s"]
+[gd_scene load_steps=58 format=4 uid="uid://dccqy2dqnnw7s"]
 
 [ext_resource type="PackedScene" uid="uid://ml6yku1jnh12" path="res://scenes/player.tscn" id="1_ogxde"]
 [ext_resource type="PackedScene" uid="uid://cusfkga27csnp" path="res://assets/drawer/Drawer A.fbx" id="2_r41v8"]
@@ -8,14 +8,28 @@
 [ext_resource type="PackedScene" uid="uid://cl58ent74xo44" path="res://assets/door/Door B.fbx" id="6_vhil1"]
 [ext_resource type="PackedScene" uid="uid://dd32otsppakke" path="res://assets/bed/Bed Single.fbx" id="7_i5s6c"]
 [ext_resource type="PackedScene" uid="uid://duoees64onvuw" path="res://assets/mug/Mug.fbx" id="7_orofi"]
+[ext_resource type="PackedScene" uid="uid://cg3k54i4ok6ao" path="res://assets/kitchen/Cupboard Sink.fbx" id="7_wi57c"]
 [ext_resource type="PackedScene" uid="uid://pnjdaj4u3dly" path="res://assets/shelf/Shelf A.fbx" id="8_rjpua"]
+[ext_resource type="PackedScene" uid="uid://crt67bf125w13" path="res://assets/kitchen/Cupboard F.fbx" id="8_wspcx"]
+[ext_resource type="PackedScene" uid="uid://3xmgacgljpdo" path="res://assets/kitchen/Cupboard E.fbx" id="9_pgyxu"]
 [ext_resource type="PackedScene" uid="uid://qjjbxtfe02p" path="res://assets/shelf/Wall Shelf A.fbx" id="9_ujcsd"]
+[ext_resource type="PackedScene" uid="uid://15ix0uob5h8o" path="res://assets/kitchen/Cupboard D.fbx" id="10_68ny6"]
 [ext_resource type="PackedScene" uid="uid://bgjkqi4d5xp6g" path="res://assets/ceil_fan/Ceiling Fan.fbx" id="10_aaebg"]
+[ext_resource type="PackedScene" uid="uid://bw1rmgkdhn3os" path="res://assets/kitchen/Knife Block.fbx" id="11_2q6uy"]
 [ext_resource type="PackedScene" uid="uid://bydedk2ejq1yf" path="res://assets/side_shelf/Table B.fbx" id="11_uv0js"]
 [ext_resource type="PackedScene" uid="uid://dbxr0yae7l4sv" path="res://assets/clock/Alarm Clock.fbx" id="12_b576n"]
+[ext_resource type="PackedScene" uid="uid://sgss3m70tg0h" path="res://assets/kitchen/Toaster.fbx" id="12_y83ie"]
 [ext_resource type="PackedScene" uid="uid://d4mig5q6g78a5" path="res://assets/bottle/bottle.blend" id="13_1wmym"]
 [ext_resource type="PackedScene" uid="uid://cwehs8lg1h5fb" path="res://assets/bin/Bin.fbx" id="13_24ya6"]
+[ext_resource type="PackedScene" uid="uid://gnh25061y267" path="res://assets/clock/Clock.fbx" id="13_wxwvo"]
+[ext_resource type="PackedScene" uid="uid://c7sf5xwaxaxoq" path="res://assets/kitchen/Pan.fbx" id="14_rr3ec"]
+[ext_resource type="PackedScene" uid="uid://c7ck1csqog5y" path="res://assets/vent/Vent.fbx" id="15_cs0cm"]
 [ext_resource type="PackedScene" uid="uid://cc533stomd3dm" path="res://assets/broom/Broom.fbx" id="15_xv45s"]
+[ext_resource type="PackedScene" uid="uid://c77j304lantfn" path="res://assets/plant/Plant A.fbx" id="16_xlvks"]
+[ext_resource type="PackedScene" uid="uid://cmrub44d4ooyq" path="res://assets/plant/Plant B.fbx" id="17_fa25w"]
+[ext_resource type="PackedScene" uid="uid://b56qifet63ceq" path="res://assets/kitchen/Rounded Table A.fbx" id="19_oejc2"]
+[ext_resource type="PackedScene" uid="uid://blcua5k4axb2l" path="res://assets/kitchen/Chair A.fbx" id="20_1fsr0"]
+[ext_resource type="PackedScene" uid="uid://bla4kdnmq84cv" path="res://assets/kitchen/Vase.fbx" id="21_5dvqq"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_cbpob"]
 sky_horizon_color = Color(0.64625, 0.65575, 0.67075, 1)
@@ -257,7 +271,7 @@ transform = Transform3D(-0.65, 0, -9.81473e-08, 0, 0.65, 0, 9.81473e-08, 0, -0.6
 transform = Transform3D(-0.65, 0, -5.68248e-08, 0, 0.65, 0, 5.68248e-08, 0, -0.65, -0.406146, 3.26733, 9.5139)
 
 [node name="RoomOneDoor2" parent="." instance=ExtResource("6_vhil1")]
-transform = Transform3D(-2.84124e-08, 0, -0.65, 0, 0.65, 0, 0.65, 0, -2.84124e-08, -89.9941, 3.26733, 0.0314279)
+transform = Transform3D(-2.84124e-08, 0, -0.65, 0, 0.65, 0, 0.65, 0, -2.84124e-08, -8.51154, 3.26733, 0.0314279)
 
 [node name="walls" type="StaticBody3D" parent="."]
 
@@ -308,6 +322,63 @@ mesh = SubResource("BoxMesh_mpu8m")
 [node name="MeshInstance3D12" type="MeshInstance3D" parent="walls"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3.52988, 22.8908)
 mesh = SubResource("BoxMesh_2r1n2")
+
+[node name="Cupboard Sink" parent="walls" instance=ExtResource("7_wi57c")]
+transform = Transform3D(-0.6, 0, -5.24537e-08, 0, 0.6, 0, 5.24537e-08, 0, -0.6, -6.86072, 2.76034, 21.4878)
+
+[node name="Cupboard F" parent="walls" instance=ExtResource("8_wspcx")]
+transform = Transform3D(-0.6, 0, -5.24537e-08, 0, 0.6, 0, 5.24537e-08, 0, -0.6, 2.33439, 2.14968, 20.6935)
+
+[node name="Cupboard E" parent="walls" instance=ExtResource("9_pgyxu")]
+transform = Transform3D(-0.6, 0, -5.24537e-08, 0, 0.6, 0, 5.24537e-08, 0, -0.6, -4.223, 1.97739, 20.7054)
+
+[node name="Cupboard D" parent="walls" instance=ExtResource("10_68ny6")]
+transform = Transform3D(-0.6, 0, -5.24537e-08, 0, 0.6, 0, 5.24537e-08, 0, -0.6, -2.03136, 2.11085, 20.8792)
+
+[node name="Knife Block" parent="walls" instance=ExtResource("11_2q6uy")]
+transform = Transform3D(-0.239285, 0, -0.320535, 0, 0.4, 0, 0.320535, 0, -0.239285, 3.30337, 3.30377, 21.0625)
+
+[node name="Toaster" parent="walls" instance=ExtResource("12_y83ie")]
+transform = Transform3D(0.303872, 0, -0.260119, 0, 0.4, 0, 0.260119, 0, 0.303872, 0.60581, 3.19742, 21.6122)
+
+[node name="Clock" parent="walls" instance=ExtResource("13_wxwvo")]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -8.13994, 6.08487, 14.5)
+
+[node name="Pan" parent="walls" instance=ExtResource("14_rr3ec")]
+transform = Transform3D(0.448574, 0, 0.537384, 0, 0.7, 0, -0.537384, 0, 0.448574, -4.51132, 3.0972, 21.1912)
+
+[node name="Vent" parent="walls" instance=ExtResource("15_cs0cm")]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, -5.24698, 7.39355, 18.2847)
+
+[node name="Vent2" parent="walls" instance=ExtResource("15_cs0cm")]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 3.85951, 7.39355, 18.2847)
+
+[node name="Vent3" parent="walls" instance=ExtResource("15_cs0cm")]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 3.85951, 7.39355, 11.7375)
+
+[node name="Vent4" parent="walls" instance=ExtResource("15_cs0cm")]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, -5.06838, 7.39355, 11.7375)
+
+[node name="Plant A" parent="walls" instance=ExtResource("16_xlvks")]
+transform = Transform3D(0.4, 0, 0, 0, 0.4, 0, 0, 0, 0.4, 4.37491, 1.24381, 11.7058)
+
+[node name="Plant B" parent="walls" instance=ExtResource("17_fa25w")]
+transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, -0.0606411, 0.650169, 21.7125)
+
+[node name="Bin" parent="walls" instance=ExtResource("13_24ya6")]
+transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 5.16561, 1.24831, 20.9144)
+
+[node name="Rounded Table A" parent="walls" instance=ExtResource("19_oejc2")]
+transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, -2.1371, 1.31973, 15.968)
+
+[node name="Chair A" parent="walls" instance=ExtResource("20_1fsr0")]
+transform = Transform3D(0.347023, 0, 0.198935, 0, 0.4, 0, -0.198935, 0, 0.347023, -4.25272, 1.06579, 14.9261)
+
+[node name="Chair A2" parent="walls" instance=ExtResource("20_1fsr0")]
+transform = Transform3D(0.190538, 0, -0.351703, 0, 0.4, 0, 0.351703, 0, 0.190538, 0.223427, 1.06579, 16.0086)
+
+[node name="Vase" parent="walls" instance=ExtResource("21_5dvqq")]
+transform = Transform3D(0.100718, -0.489751, 0, 0.489751, 0.100718, 0, 0, 0, 0.5, -1.81625, 2.218, 16.2272)
 
 [node name="RoomOne" type="Node3D" parent="."]
 
