@@ -20,6 +20,7 @@ var gravity = 9.8*2
 @onready var head = $Head
 @onready var camera = $Head/Camera3D
 
+var swatted_fly = false
 
 func _ready():
 	Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
@@ -32,7 +33,6 @@ func _unhandled_input(event):
 		head.rotate_y(-event.relative.x * SENSITIVITY)
 		camera.rotate_x(-event.relative.y * SENSITIVITY)
 		camera.rotation.x = clamp(camera.rotation.x, deg_to_rad(-40), deg_to_rad(60))
-
 
 func _physics_process(delta):
 	if $AnimationPlayer.is_playing() and $AnimationPlayer.current_animation == "wake_up":
@@ -50,7 +50,10 @@ func _physics_process(delta):
 		speed = SPRINT_SPEED
 	else:
 		speed = WALK_SPEED
-
+	
+	if Input.is_action_just_pressed("swat") and not swatted_fly:
+		swatted_fly = true
+		$AnimationPlayer.play("swat")
 	# Get the input direction and handle the movement/deceleration.
 	var input_dir = Input.get_vector("left", "right", "up", "down")
 	var direction = (head.transform.basis * transform.basis * Vector3(input_dir.x, 0, input_dir.y)).normalized()

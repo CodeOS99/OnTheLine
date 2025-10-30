@@ -6,6 +6,7 @@ extends CharacterBody3D
 @export var noise_speed: float = 2.0
 @export var vertical_limit: float = .6
 @export var jitter_strength:float = .3
+@export var can_move: bool = true
 
 var target_pos: Vector3
 var noise = FastNoiseLite.new()
@@ -18,6 +19,9 @@ func _ready():
 	target_pos = global_position
 	
 func _process(delta: float) -> void:
+	if not can_move:
+		return
+	
 	if not player:
 		print("No player?S?????")
 		return
