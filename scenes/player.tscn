@@ -1,7 +1,8 @@
-[gd_scene load_steps=12 format=3 uid="uid://ml6yku1jnh12"]
+[gd_scene load_steps=16 format=3 uid="uid://ml6yku1jnh12"]
 
 [ext_resource type="Script" path="res://scripts/player.gd" id="1_ifktf"]
 [ext_resource type="PackedScene" uid="uid://ksfj05usilnj" path="res://scenes/fly.tscn" id="2_u5xba"]
+[ext_resource type="FontFile" uid="uid://dvwm54tsyuaub" path="res://fonts/BitcountGridSingle-Regular.ttf" id="3_2mh62"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_42gdx"]
 height = 6.0
@@ -17,19 +18,19 @@ length = 0.001
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("Control/TextureRect:modulate")
+tracks/0/path = NodePath(".:rotation")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 0,
-"values": [Color(0, 0, 0, 0)]
+"values": [Vector3(0, 0, 0)]
 }
 tracks/1/type = "value"
 tracks/1/imported = false
 tracks/1/enabled = true
-tracks/1/path = NodePath(".:rotation")
+tracks/1/path = NodePath("Head/Hand:rotation")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
@@ -41,62 +42,74 @@ tracks/1/keys = {
 tracks/2/type = "value"
 tracks/2/imported = false
 tracks/2/enabled = true
-tracks/2/path = NodePath("Head/Hand:rotation")
+tracks/2/path = NodePath("Head/Hand:position")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 0,
-"values": [Vector3(0, 0, 0)]
+"values": [Vector3(0.91, -1.326, -1.011)]
 }
 tracks/3/type = "value"
 tracks/3/imported = false
 tracks/3/enabled = true
-tracks/3/path = NodePath("Head/Hand:position")
+tracks/3/path = NodePath("Fly:can_move")
 tracks/3/interp = 1
 tracks/3/loop_wrap = true
 tracks/3/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Vector3(0.91, -1.326, -1.011)]
+"update": 1,
+"values": [true]
 }
 tracks/4/type = "value"
 tracks/4/imported = false
 tracks/4/enabled = true
-tracks/4/path = NodePath("Fly:can_move")
+tracks/4/path = NodePath("Fly:position")
 tracks/4/interp = 1
 tracks/4/loop_wrap = true
 tracks/4/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [true]
+"update": 0,
+"values": [Vector3(0, 0, -2.78431)]
 }
 tracks/5/type = "value"
 tracks/5/imported = false
 tracks/5/enabled = true
-tracks/5/path = NodePath("Fly:position")
+tracks/5/path = NodePath("Head/Hand:visible")
 tracks/5/interp = 1
 tracks/5/loop_wrap = true
 tracks/5/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Vector3(0, 0, -2.78431)]
+"update": 1,
+"values": [false]
 }
 tracks/6/type = "value"
 tracks/6/imported = false
 tracks/6/enabled = true
-tracks/6/path = NodePath("Head/Hand:visible")
+tracks/6/path = NodePath("Control/NonBlocker:visible")
 tracks/6/interp = 1
 tracks/6/loop_wrap = true
 tracks/6/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 1,
-"values": [false]
+"values": [true]
+}
+tracks/7/type = "value"
+tracks/7/imported = false
+tracks/7/enabled = true
+tracks/7/path = NodePath("Control/Blocker2/Blocker:modulate")
+tracks/7/interp = 1
+tracks/7/loop_wrap = true
+tracks/7/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(0, 0, 0, 0)]
 }
 
 [sub_resource type="Animation" id="Animation_aixba"]
@@ -105,7 +118,7 @@ length = 4.0
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("Control/TextureRect:modulate")
+tracks/0/path = NodePath("Control/Blocker2/Blocker:modulate")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
@@ -125,6 +138,18 @@ tracks/1/keys = {
 "transitions": PackedFloat32Array(1, 1, 1),
 "update": 0,
 "values": [Vector3(0, 0, -1.5708), Vector3(0, 0, -1.5708), Vector3(0, 0, 0)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Control/NonBlocker:visible")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 4),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [false, true]
 }
 
 [sub_resource type="Animation" id="Animation_kv8w3"]
@@ -197,6 +222,17 @@ _data = {
 "wake_up": SubResource("Animation_aixba")
 }
 
+[sub_resource type="Theme" id="Theme_ue30b"]
+default_font = ExtResource("3_2mh62")
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_fmcwo"]
+offset = Vector3(1000, 0, 0)
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_dqg6g"]
+width = 1
+height = 1
+noise = SubResource("FastNoiseLite_fmcwo")
+
 [sub_resource type="FastNoiseLite" id="FastNoiseLite_71d7h"]
 
 [sub_resource type="NoiseTexture2D" id="NoiseTexture2D_xv1en"]
@@ -242,13 +278,72 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
+theme = SubResource("Theme_ue30b")
 
-[node name="TextureRect" type="TextureRect" parent="Control"]
+[node name="NonBlocker" type="Control" parent="Control"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+
+[node name="ObjectiveLabel" type="Label" parent="Control/NonBlocker"]
+layout_mode = 1
+offset_right = 274.0
+offset_bottom = 30.0
+theme_override_font_sizes/font_size = 24
+text = "Objective: Swat fly"
+
+[node name="Crosshair" type="TextureRect" parent="Control/NonBlocker"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -5.0
+offset_top = -5.0
+offset_right = 5.0
+offset_bottom = 5.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = SubResource("NoiseTexture2D_dqg6g")
+
+[node name="SwatLabel" type="Label" parent="Control/NonBlocker"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -62.0
+offset_top = 8.0
+offset_right = 63.0
+offset_bottom = 31.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "Click to swat"
+
+[node name="Blocker2" type="Control" parent="Control"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+
+[node name="Blocker" type="TextureRect" parent="Control/Blocker2"]
 modulate = Color(0, 0, 0, 0)
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
+offset_top = -3.0
+offset_right = 472.0
+offset_bottom = 469.0
 grow_horizontal = 2
 grow_vertical = 2
 texture = SubResource("NoiseTexture2D_xv1en")
