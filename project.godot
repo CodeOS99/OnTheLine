@@ -19,6 +19,17 @@ config/icon="res://icon.svg"
 
 enabled=PackedStringArray("res://addons/godot_super-wakatime/plugin.cfg")
 
+[file_customization]
+
+folder_colors={
+"res://addons/": "gray",
+"res://assets/": "purple",
+"res://images/": "gray",
+"res://scenes/": "green",
+"res://scripts/": "teal",
+"res://shader/": "pink"
+}
+
 [gui]
 
 theme/custom_font="res://fonts/PabasingSignature-q2x3d.otf"

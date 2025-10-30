@@ -1,4 +1,4 @@
-[gd_scene load_steps=70 format=4 uid="uid://dccqy2dqnnw7s"]
+[gd_scene load_steps=85 format=4 uid="uid://dccqy2dqnnw7s"]
 
 [ext_resource type="PackedScene" uid="uid://ml6yku1jnh12" path="res://scenes/player.tscn" id="1_ogxde"]
 [ext_resource type="PackedScene" uid="uid://cusfkga27csnp" path="res://assets/drawer/Drawer A.fbx" id="2_r41v8"]
@@ -34,6 +34,11 @@
 [ext_resource type="PackedScene" uid="uid://dvt1i6a774vcv" path="res://assets/shelf/Shelf B.fbx" id="32_qhhc2"]
 [ext_resource type="PackedScene" uid="uid://bxs16112403y8" path="res://assets/carpet/Carpet A.fbx" id="33_phkqn"]
 [ext_resource type="PackedScene" uid="uid://clgs5l6ikaj6g" path="res://assets/socket/Socket.fbx" id="34_boo4u"]
+[ext_resource type="PackedScene" uid="uid://vfyoipyjvw1u" path="res://assets/bathroom/Sink.fbx" id="35_krwct"]
+[ext_resource type="PackedScene" uid="uid://b0oyl1qfxl84i" path="res://assets/bathroom/Toilet.fbx" id="36_6d8wu"]
+[ext_resource type="PackedScene" uid="uid://b7upnq70jni0x" path="res://assets/bathroom/Toilet Rolls.fbx" id="37_gc1ks"]
+[ext_resource type="PackedScene" uid="uid://lvonfk3jphnf" path="res://assets/bathroom/Bath.fbx" id="38_djjch"]
+[ext_resource type="PackedScene" uid="uid://uix1f2bqye1o" path="res://assets/mirror/Mirror B.fbx" id="39_jwtn1"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_cbpob"]
 sky_horizon_color = Color(0.64625, 0.65575, 0.67075, 1)
@@ -62,6 +67,12 @@ size = Vector3(14.72, 1, 12.985)
 
 [sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_d4dtw"]
 points = PackedVector3Array(-7.36, -0.5, -6.4925, -7.36, 0.5, -6.4925, 7.36, -0.5, -6.4925, -7.36, -0.5, 6.4925, -7.36, 0.5, 6.4925, 7.36, 0.5, -6.4925, 7.36, -0.5, 6.4925, 7.36, 0.5, 6.4925)
+
+[sub_resource type="BoxMesh" id="BoxMesh_6tuum"]
+size = Vector3(10.81, 1, 10.8)
+
+[sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_wbdfu"]
+points = PackedVector3Array(-5.405, -0.5, -5.4, -5.405, 0.5, -5.4, 5.405, -0.5, -5.4, -5.405, -0.5, 5.4, -5.405, 0.5, 5.4, 5.405, 0.5, -5.4, 5.405, -0.5, 5.4, 5.405, 0.5, 5.4)
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_rijas"]
 resource_name = "tv"
@@ -151,13 +162,16 @@ size = Vector3(1, 25.135, 6.975)
 size = Vector3(1, 25.135, 52.455)
 
 [sub_resource type="BoxMesh" id="BoxMesh_dqegw"]
-size = Vector3(37.96, 1, 57.77)
+size = Vector3(49.455, 1, 57.77)
 
 [sub_resource type="BoxMesh" id="BoxMesh_pakll"]
 size = Vector3(1, 8.125, 4.745)
 
 [sub_resource type="BoxMesh" id="BoxMesh_fbxhs"]
-size = Vector3(1, 18.555, 38.07)
+size = Vector3(1, 18.555, 16.805)
+
+[sub_resource type="BoxMesh" id="BoxMesh_q8vcr"]
+size = Vector3(1, 18.555, 16.805)
 
 [sub_resource type="BoxMesh" id="BoxMesh_0kxpy"]
 size = Vector3(6.745, 1, 1)
@@ -169,13 +183,34 @@ size = Vector3(1, 10.21, 14.555)
 size = Vector3(17.345, 13.62, 1)
 
 [sub_resource type="BoxMesh" id="BoxMesh_7dfs7"]
-size = Vector3(12.11, 9.73, 1)
+size = Vector3(9.21, 9.73, 1)
+
+[sub_resource type="BoxMesh" id="BoxMesh_q4vxv"]
+size = Vector3(6.185, 9.73, 1)
 
 [sub_resource type="BoxMesh" id="BoxMesh_5mm5l"]
-size = Vector3(6.505, 9.73, 1)
+size = Vector3(6.63, 9.73, 1)
 
 [sub_resource type="BoxMesh" id="BoxMesh_mf6ip"]
 size = Vector3(17.3, 13.93, 1)
+
+[sub_resource type="BoxMesh" id="BoxMesh_gydq1"]
+size = Vector3(1, 0.71, 3.68)
+
+[sub_resource type="BoxMesh" id="BoxMesh_52an1"]
+size = Vector3(1, 9.67, 3.365)
+
+[sub_resource type="BoxMesh" id="BoxMesh_1d3yx"]
+size = Vector3(1, 9.67, 3.365)
+
+[sub_resource type="BoxMesh" id="BoxMesh_at3jt"]
+size = Vector3(1, 9.67, 6.64)
+
+[sub_resource type="BoxMesh" id="BoxMesh_cxrw4"]
+size = Vector3(1, 9.67, 6.75)
+
+[sub_resource type="BoxMesh" id="BoxMesh_e8c8u"]
+size = Vector3(1, 9.67, 12.295)
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_fa6p7"]
 resource_name = "Material.001"
@@ -349,6 +384,14 @@ mesh = SubResource("BoxMesh_w3xih")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.194659, 15.8788)
 shape = SubResource("ConvexPolygonShape3D_d4dtw")
 
+[node name="MeshInstance3D3" type="MeshInstance3D" parent="floor"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -28.1724, -0.301958, 0.65309)
+mesh = SubResource("BoxMesh_6tuum")
+
+[node name="CollisionShape3D3" type="CollisionShape3D" parent="floor"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -28.1724, -0.301958, 0.65309)
+shape = SubResource("ConvexPolygonShape3D_wbdfu")
+
 [node name="Drawer A" parent="." instance=ExtResource("2_r41v8")]
 transform = Transform3D(0.635, 0, 0, 0, 0.635, 0, 0, 0, 0.635, 4.27716, 1.82782, -8.81392)
 
@@ -384,7 +427,10 @@ transform = Transform3D(-0.65, 0, -9.81473e-08, 0, 0.65, 0, 9.81473e-08, 0, -0.6
 transform = Transform3D(0.65, 0, 0, 0, 0.65, 0, 0, 0, 0.65, -0.926332, 3.26733, 9.5139)
 
 [node name="RoomOneDoor2" parent="." instance=ExtResource("6_vhil1")]
-transform = Transform3D(-0.65, 0, -5.68248e-08, 0, 0.65, 0, 5.68248e-08, 0, -0.65, -16.0724, 3.26733, -1.18181)
+transform = Transform3D(-0.65, 0, -5.68248e-08, 0, 0.65, 0, 5.68248e-08, 0, -0.65, -16.0724, 3.26733, -1.78714)
+
+[node name="RoomOneDoor3" parent="." instance=ExtResource("6_vhil1")]
+transform = Transform3D(-2.84124e-08, 0, -0.65, 0, 0.65, 0, 0.65, 0, -2.84124e-08, -23.3392, 3.26733, -0.297724)
 
 [node name="RoomTwoDoor" parent="." instance=ExtResource("6_vhil1")]
 transform = Transform3D(0.65, 0, 0, 0, 0.65, 0, 0, 0, 0.65, -16.7684, 3.26733, 1.8939)
@@ -399,7 +445,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -8.78068, 0.746908, 13.1334)
 mesh = SubResource("BoxMesh_wkuhu")
 
 [node name="MeshInstance3D6" type="MeshInstance3D" parent="walls"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -8.78068, 0.746908, -12.6061)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -8.8127, 0.746906, -12.6613)
 mesh = SubResource("BoxMesh_joowf")
 
 [node name="MeshInstance3D2" type="MeshInstance3D" parent="walls"]
@@ -419,7 +465,7 @@ transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 0.9687
 mesh = SubResource("BoxMesh_4ff53")
 
 [node name="MeshInstance3D5" type="MeshInstance3D" parent="walls"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6.19182, 7.91595, -2.80945)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -14.1275, 7.91595, -2.80945)
 mesh = SubResource("BoxMesh_dqegw")
 
 [node name="MeshInstance3D7" type="MeshInstance3D" parent="walls"]
@@ -427,8 +473,12 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -8.73454, 10.8669, 0)
 mesh = SubResource("BoxMesh_pakll")
 
 [node name="MeshInstance3D8" type="MeshInstance3D" parent="walls"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -23.8819, 6.53994, 1.79913)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -23.8819, 6.53994, 9.85146)
 mesh = SubResource("BoxMesh_fbxhs")
+
+[node name="MeshInstance3D18" type="MeshInstance3D" parent="walls"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -23.8819, 6.53994, -9.66412)
+mesh = SubResource("BoxMesh_q8vcr")
 
 [node name="MeshInstance3D10" type="MeshInstance3D" parent="walls"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.709624, 7.27858, 9.76887)
@@ -443,15 +493,15 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3.52988, 22.8908)
 mesh = SubResource("BoxMesh_2r1n2")
 
 [node name="MeshInstance3D13" type="MeshInstance3D" parent="walls"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -23.835, 3.27725, -1.58207)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -22.3809, 3.27725, -2.18741)
 mesh = SubResource("BoxMesh_7dfs7")
 
 [node name="MeshInstance3D14" type="MeshInstance3D" parent="walls"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -11.8992, 3.27725, -1.58207)
-mesh = SubResource("BoxMesh_5mm5l")
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -11.8992, 3.27725, -2.18741)
+mesh = SubResource("BoxMesh_q4vxv")
 
 [node name="MeshInstance3D16" type="MeshInstance3D" parent="walls"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -24.016, 3.27725, 2.23727)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -22.56, 3.27725, 2.23727)
 mesh = SubResource("BoxMesh_7dfs7")
 
 [node name="MeshInstance3D17" type="MeshInstance3D" parent="walls"]
@@ -461,6 +511,32 @@ mesh = SubResource("BoxMesh_5mm5l")
 [node name="MeshInstance3D15" type="MeshInstance3D" parent="walls"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -17.0365, 2.75448, 18.5658)
 mesh = SubResource("BoxMesh_mf6ip")
+
+[node name="MeshInstance3D19" type="MeshInstance3D" parent="walls"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -23.8535, 7.19721, 0)
+mesh = SubResource("BoxMesh_gydq1")
+
+[node name="MeshInstance3D20" type="MeshInstance3D" parent="walls"]
+
+[node name="MeshInstance3D21" type="MeshInstance3D" parent="walls"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -26.6551, 4.10043, 3.87742)
+mesh = SubResource("BoxMesh_52an1")
+
+[node name="MeshInstance3D24" type="MeshInstance3D" parent="walls"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -26.6551, 4.10043, -4.23402)
+mesh = SubResource("BoxMesh_1d3yx")
+
+[node name="MeshInstance3D25" type="MeshInstance3D" parent="walls"]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -30.2958, 4.10043, -4.23402)
+mesh = SubResource("BoxMesh_at3jt")
+
+[node name="MeshInstance3D22" type="MeshInstance3D" parent="walls"]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -30.1771, 4.10043, 5.60661)
+mesh = SubResource("BoxMesh_cxrw4")
+
+[node name="MeshInstance3D23" type="MeshInstance3D" parent="walls"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -33.8532, 4.10043, 0.565099)
+mesh = SubResource("BoxMesh_e8c8u")
 
 [node name="RoomOne" type="Node3D" parent="."]
 
@@ -548,22 +624,22 @@ transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, -0.0606411, 0.650169, 2
 transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 5.16561, 1.24831, 20.9144)
 
 [node name="Rounded Table A" parent="Kitchen" instance=ExtResource("19_oejc2")]
-transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, -2.1371, 1.31973, 15.968)
+transform = Transform3D(0.7, 0, 0, 0, 0.7, 0, 0, 0, 0.7, -2.0836, 1.74474, 15.968)
 
 [node name="Chair A" parent="Kitchen" instance=ExtResource("20_1fsr0")]
-transform = Transform3D(0.347023, 0, 0.198935, 0, 0.4, 0, -0.198935, 0, 0.347023, -4.25272, 1.06579, 14.9261)
+transform = Transform3D(0.60729, 0, 0.348136, 0, 0.7, 0, -0.348136, 0, 0.60729, -4.25272, 1.84045, 13.5651)
 
 [node name="Chair A2" parent="Kitchen" instance=ExtResource("20_1fsr0")]
-transform = Transform3D(0.190538, 0, -0.351703, 0, 0.4, 0, 0.351703, 0, 0.190538, 0.223427, 1.06579, 16.0086)
+transform = Transform3D(0.333442, 0, -0.615481, 0, 0.7, 0, 0.615481, 0, 0.333442, 1.2272, 1.84045, 15.3779)
 
 [node name="Vase" parent="Kitchen" instance=ExtResource("21_5dvqq")]
-transform = Transform3D(0.100718, -0.489751, 0, 0.489751, 0.100718, 0, 0, 0, 0.5, -1.81625, 2.218, 16.2272)
+transform = Transform3D(0.141006, -0.685651, 0, 0.685651, 0.141006, 0, 0, 0, 0.7, -1.81625, 2.92742, 16.2272)
 
 [node name="Plate" parent="Kitchen" instance=ExtResource("28_qmerw")]
-transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, -0.810602, 2.11712, 15.8538)
+transform = Transform3D(0.7, 0, 0, 0, 0.7, 0, 0, 0, 0.7, -0.810602, 2.82654, 15.8538)
 
 [node name="Plate2" parent="Kitchen" instance=ExtResource("28_qmerw")]
-transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, -3.55368, 2.11712, 15.3144)
+transform = Transform3D(0.7, 0, 0, 0, 0.7, 0, 0, 0, 0.7, -3.55368, 2.82654, 15.3144)
 
 [node name="Socket3" parent="Kitchen" instance=ExtResource("34_boo4u")]
 transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -8.23524, 1.35626, 15.1435)
@@ -622,6 +698,23 @@ transform = Transform3D(0.153744, 0, 0.734073, 0, 0.75, 0, -0.734073, 0, 0.15374
 
 [node name="Socket" parent="RoomTwo" instance=ExtResource("34_boo4u")]
 transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -23.3389, 1.35626, 4.84991)
+
+[node name="BathRoom" type="Node3D" parent="."]
+
+[node name="Sink" parent="BathRoom" instance=ExtResource("35_krwct")]
+transform = Transform3D(0.7, 0, 0, 0, 0.7, 0, 0, 0, 0.7, -30.8176, 2.50828, -2.54729)
+
+[node name="Toilet" parent="BathRoom" instance=ExtResource("36_6d8wu")]
+transform = Transform3D(-3.0598e-08, 0, 0.7, 0, 0.7, 0, -0.7, 0, -3.0598e-08, -32.5098, 2.18652, -0.665068)
+
+[node name="Toilet Rolls" parent="BathRoom" instance=ExtResource("37_gc1ks")]
+transform = Transform3D(1.16, 0, 0, 0, 1.16, 0, 0, 0, 1.16, -32.1441, 0.585789, 0.871021)
+
+[node name="Bath" parent="BathRoom" instance=ExtResource("38_djjch")]
+transform = Transform3D(0.705, 0, 0, 0, 0.705, 0, 0, 0, 0.705, -32.0406, 2.31681, 3.29499)
+
+[node name="Mirror B" parent="." instance=ExtResource("39_jwtn1")]
+transform = Transform3D(0.7, 0, 0, 0, 0.7, 0, 0, 0, 0.7, -30.7464, 3.84135, -3.65603)
 
 [editable path="tv"]
 [editable path="bottles"]
