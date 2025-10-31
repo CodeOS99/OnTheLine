@@ -97,7 +97,8 @@ func _process(delta: float) -> void:
 func update_objective():
 	if went_in_balcony and went_in_bathroom and went_in_kitchen and went_in_room_one and not got_call_once:
 		$Control/NonBlocker/ObjectiveLabel.text = "Check phone"
-		got_call_once
+		got_call_once = true
+		Globals.telephone.ring()
 
 func _headbob(time) -> Vector3:
 	var pos = Vector3.ZERO
