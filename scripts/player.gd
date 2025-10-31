@@ -54,6 +54,9 @@ func _physics_process(delta):
 	if Input.is_action_just_pressed("swat") and not swatted_fly:
 		swatted_fly = true
 		$AnimationPlayer.play("swat")
+		$Control/NonBlocker/ObjectiveLabel.text = "Reorient yourself(explore)"
+		$Control/NonBlocker/SwatLabel.visible = false
+	
 	# Get the input direction and handle the movement/deceleration.
 	var input_dir = Input.get_vector("left", "right", "up", "down")
 	var direction = (head.transform.basis * transform.basis * Vector3(input_dir.x, 0, input_dir.y)).normalized()

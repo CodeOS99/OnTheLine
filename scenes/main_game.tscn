@@ -1,11 +1,11 @@
-[gd_scene load_steps=95 format=4 uid="uid://dccqy2dqnnw7s"]
+[gd_scene load_steps=94 format=4 uid="uid://dccqy2dqnnw7s"]
 
 [ext_resource type="PackedScene" uid="uid://ml6yku1jnh12" path="res://scenes/player.tscn" id="1_ogxde"]
 [ext_resource type="PackedScene" uid="uid://cusfkga27csnp" path="res://assets/drawer/Drawer A.fbx" id="2_r41v8"]
 [ext_resource type="PackedScene" uid="uid://4cvt2bges8si" path="res://assets/sofa/SofaA.fbx" id="2_rm1wp"]
 [ext_resource type="PackedScene" uid="uid://foohbiajoo1c" path="res://assets/tv/tv.blend" id="3_w0ff2"]
 [ext_resource type="Shader" path="res://shader/tv_screen_noise.gdshader" id="4_5vby8"]
-[ext_resource type="PackedScene" uid="uid://cl58ent74xo44" path="res://assets/door/Door B.fbx" id="6_vhil1"]
+[ext_resource type="PackedScene" uid="uid://t25l78emb1mv" path="res://scenes/door.tscn" id="6_ge32s"]
 [ext_resource type="PackedScene" uid="uid://dd32otsppakke" path="res://assets/bed/Bed Single.fbx" id="7_i5s6c"]
 [ext_resource type="PackedScene" uid="uid://duoees64onvuw" path="res://assets/mug/Mug.fbx" id="7_orofi"]
 [ext_resource type="PackedScene" uid="uid://cg3k54i4ok6ao" path="res://assets/kitchen/Cupboard Sink.fbx" id="7_wi57c"]
@@ -39,7 +39,6 @@
 [ext_resource type="PackedScene" uid="uid://b7upnq70jni0x" path="res://assets/bathroom/Toilet Rolls.fbx" id="37_gc1ks"]
 [ext_resource type="PackedScene" uid="uid://lvonfk3jphnf" path="res://assets/bathroom/Bath.fbx" id="38_djjch"]
 [ext_resource type="PackedScene" uid="uid://uix1f2bqye1o" path="res://assets/mirror/Mirror B.fbx" id="39_jwtn1"]
-[ext_resource type="PackedScene" uid="uid://s7w04uqffd0v" path="res://assets/door/Door A.fbx" id="40_jus4k"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_cbpob"]
 sky_horizon_color = Color(0.64625, 0.65575, 0.67075, 1)
@@ -448,23 +447,23 @@ transform = Transform3D(-0.72, 0, -6.29444e-08, 0, 0.72, 0, 6.29444e-08, 0, -0.7
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.762, 1.046, 1.072)
 shape = SubResource("BoxShape3D_vln62")
 
-[node name="MainDoor" parent="." instance=ExtResource("6_vhil1")]
-transform = Transform3D(-0.65, 0, -9.81473e-08, 0, 0.65, 0, 9.81473e-08, 0, -0.65, -3.93769, 3.26733, -14.8177)
+[node name="MainDoor" parent="." instance=ExtResource("6_ge32s")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.938, 3.267, -14.818)
 
-[node name="KitchenDoor" parent="." instance=ExtResource("6_vhil1")]
-transform = Transform3D(0.65, 0, 0, 0, 0.65, 0, 0, 0, 0.65, -0.926332, 3.26733, 9.5139)
+[node name="KitchenDoor" parent="." instance=ExtResource("6_ge32s")]
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, -1.00998, 3.267, 9.514)
 
-[node name="RoomOneDoor2" parent="." instance=ExtResource("6_vhil1")]
-transform = Transform3D(-0.65, 0, -5.68248e-08, 0, 0.65, 0, 5.68248e-08, 0, -0.65, -16.0724, 3.26733, -1.78714)
+[node name="RoomOneDoor2" parent="." instance=ExtResource("6_ge32s")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -16.072, 3.267, -1.787)
 
-[node name="RoomOneDoor3" parent="." instance=ExtResource("6_vhil1")]
-transform = Transform3D(-2.84124e-08, 0, -0.65, 0, 0.65, 0, 0.65, 0, -2.84124e-08, -23.3392, 3.26733, -0.297724)
+[node name="RoomOneDoor3" parent="." instance=ExtResource("6_ge32s")]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -23.339, 3.267, -0.298)
 
-[node name="RoomTwoDoor" parent="." instance=ExtResource("6_vhil1")]
-transform = Transform3D(0.65, 0, 0, 0, 0.65, 0, 0, 0, 0.65, -16.7684, 3.26733, 1.8939)
+[node name="RoomTwoDoor" parent="." instance=ExtResource("6_ge32s")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -16.3294, 3.267, 1.894)
 
-[node name="RoomHallwayDoor" parent="." instance=ExtResource("6_vhil1")]
-transform = Transform3D(-2.84124e-08, 0, -0.65, 0, 0.65, 0, 0.65, 0, -2.84124e-08, -8.51154, 3.26733, 0.0314279)
+[node name="RoomHallwayDoor" parent="." instance=ExtResource("6_ge32s")]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -8.512, 3.267, -0.0363139)
 
 [node name="walls" type="StaticBody3D" parent="."]
 
@@ -748,8 +747,8 @@ transform = Transform3D(0.705, 0, 0, 0, 0.705, 0, 0, 0, 0.705, -32.0406, 2.31681
 [node name="Mirror B" parent="." instance=ExtResource("39_jwtn1")]
 transform = Transform3D(0.7, 0, 0, 0, 0.7, 0, 0, 0, 0.7, -30.7464, 3.84135, -3.65603)
 
-[node name="Door A" parent="." instance=ExtResource("40_jus4k")]
-transform = Transform3D(-2.84124e-08, 0, 0.65, 0, 0.65, 0, -0.65, 0, -2.84124e-08, 6.20878, 0.330135, 15.2568)
+[node name="Door" parent="." instance=ExtResource("6_ge32s")]
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 6.209, 0.33, 15.257)
 
 [node name="Balcony" type="Node3D" parent="."]
 
