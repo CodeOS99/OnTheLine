@@ -1,4 +1,4 @@
-[gd_scene load_steps=102 format=4 uid="uid://dccqy2dqnnw7s"]
+[gd_scene load_steps=104 format=4 uid="uid://dccqy2dqnnw7s"]
 
 [ext_resource type="PackedScene" uid="uid://ml6yku1jnh12" path="res://scenes/player.tscn" id="1_ogxde"]
 [ext_resource type="PackedScene" uid="uid://cusfkga27csnp" path="res://assets/drawer/Drawer A.fbx" id="2_r41v8"]
@@ -43,6 +43,8 @@
 [ext_resource type="PackedScene" uid="uid://lvonfk3jphnf" path="res://assets/bathroom/Bath.fbx" id="38_djjch"]
 [ext_resource type="PackedScene" uid="uid://uix1f2bqye1o" path="res://assets/mirror/Mirror B.fbx" id="39_jwtn1"]
 [ext_resource type="Script" path="res://scripts/balcony_check.gd" id="39_vsxb4"]
+[ext_resource type="PackedScene" uid="uid://def3mellk2byj" path="res://assets/side_shelf/Rounded Table B.fbx" id="40_0ru3l"]
+[ext_resource type="ArrayMesh" uid="uid://dsrtk2my3w82r" path="res://assets/sfm-telephone/source/Telephone/Telephone.obj" id="40_s2ctn"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_cbpob"]
 sky_horizon_color = Color(0.64625, 0.65575, 0.67075, 1)
@@ -822,6 +824,20 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 9.24489, 2.66235, 14.1654)
 shape = SubResource("BoxShape3D_cmxyt")
 
 [node name="MainHall" type="Node3D" parent="."]
+
+[node name="Telephone" type="MeshInstance3D" parent="MainHall"]
+transform = Transform3D(0.05, 0, 0, 0, 0.05, 0, 0, 0, 0.05, 1.85356, 2.26221, -6.10478)
+mesh = ExtResource("40_s2ctn")
+skeleton = NodePath("../..")
+
+[node name="OmniLight3D" type="OmniLight3D" parent="MainHall/Telephone"]
+transform = Transform3D(20, 0, 0, 0, 20, 0, 0, 0, 20, 0, 5.65043, 3.06127)
+light_color = Color(1, 0.407246, 0.338652, 1)
+light_energy = 0.515
+omni_range = 1.013
+
+[node name="Rounded Table B" parent="MainHall" instance=ExtResource("40_0ru3l")]
+transform = Transform3D(0.6, 0, 0, 0, 0.6, 0, 0, 0, 0.6, 1.77533, 1.42062, -6.26177)
 
 [node name="Drawer A" parent="MainHall" instance=ExtResource("2_r41v8")]
 transform = Transform3D(0.635, 0, 0, 0, 0.635, 0, 0, 0, 0.635, 4.27716, 1.82782, -8.81392)
