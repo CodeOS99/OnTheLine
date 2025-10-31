@@ -241,7 +241,7 @@ noise = SubResource("FastNoiseLite_fmcwo")
 [sub_resource type="NoiseTexture2D" id="NoiseTexture2D_xv1en"]
 noise = SubResource("FastNoiseLite_71d7h")
 
-[node name="Player" type="CharacterBody3D"]
+[node name="Player" type="CharacterBody3D" groups=["player"]]
 script = ExtResource("1_ifktf")
 
 [node name="Fly" parent="." node_paths=PackedStringArray("player") instance=ExtResource("2_u5xba")]
@@ -336,6 +336,7 @@ grow_vertical = 2
 text = "Click to swat"
 
 [node name="InteractLabel" type="Label" parent="Control/NonBlocker"]
+visible = false
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5

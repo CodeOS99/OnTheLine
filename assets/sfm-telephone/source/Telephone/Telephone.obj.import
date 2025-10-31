@@ -1,0 +1,22 @@
+[remap]
+
+importer="wavefront_obj"
+importer_version=1
+type="Mesh"
+uid="uid://dsrtk2my3w82r"
+path="res://.godot/imported/Telephone.obj-23cc21479f3797d23840ab975a657bfb.mesh"
+
+[deps]
+
+files=["res://.godot/imported/Telephone.obj-23cc21479f3797d23840ab975a657bfb.mesh"]
+
+source_file="res://assets/sfm-telephone/source/Telephone/Telephone.obj"
+dest_files=["res://.godot/imported/Telephone.obj-23cc21479f3797d23840ab975a657bfb.mesh", "res://.godot/imported/Telephone.obj-23cc21479f3797d23840ab975a657bfb.mesh"]
+
+[params]
+
+generate_tangents=true
+scale_mesh=Vector3(1, 1, 1)
+offset_mesh=Vector3(0, 0, 0)
+optimize_mesh=true
+force_disable_mesh_compression=false

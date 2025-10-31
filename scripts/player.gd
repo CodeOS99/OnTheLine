@@ -22,9 +22,16 @@ var gravity = 9.8*2
 
 var swatted_fly = false
 
+var went_in_room_one := false
+var went_in_bathroom := false
+var went_in_kitchen := false
+var went_in_balcony := false
+
+var got_call_once := false
+
 func _ready():
 	Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
-
+	Globals.player = self
 
 func _unhandled_input(event):
 	if $AnimationPlayer.is_playing() and $AnimationPlayer.current_animation == "wake_up":
@@ -84,6 +91,13 @@ func _physics_process(delta):
 
 func _process(delta: float) -> void:
 	$Control/NonBlocker/SwatLabel.visible = not swatted_fly
+	
+	update_objective()
+
+func update_objective():
+	if went_in_balcony and went_in_bathroom and went_in_kitchen and went_in_room_one and not got_call_once:
+		$Control/NonBlocker/ObjectiveLabel.text = "Check phone"
+		got_call_once
 
 func _headbob(time) -> Vector3:
 	var pos = Vector3.ZERO
