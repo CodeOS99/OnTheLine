@@ -1,6 +1,9 @@
-[gd_scene load_steps=3 format=3 uid="uid://ksfj05usilnj"]
+[gd_scene load_steps=4 format=3 uid="uid://ksfj05usilnj"]
 
 [ext_resource type="Script" path="res://scripts/fly.gd" id="1_04sxq"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_sooxm"]
+albedo_color = Color(0, 0, 0, 1)
 
 [sub_resource type="SphereMesh" id="SphereMesh_ld6q4"]
 radius = 0.1
@@ -10,4 +13,5 @@ height = 0.2
 script = ExtResource("1_04sxq")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+material_override = SubResource("StandardMaterial3D_sooxm")
 mesh = SubResource("SphereMesh_ld6q4")

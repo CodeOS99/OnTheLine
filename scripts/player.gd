@@ -20,7 +20,9 @@ var gravity = 9.8*2
 @onready var head = $Head
 @onready var camera = $Head/Camera3D
 
-var swatted_fly = false
+var swatted_fly := false
+var fly_two := false # can swat fly for the second time
+var done_with_fly := false
 
 var went_in_room_one := false
 var went_in_bathroom := false
@@ -60,11 +62,17 @@ func _physics_process(delta):
 	else:
 		speed = WALK_SPEED
 	
-	if Input.is_action_just_pressed("swat") and not swatted_fly:
-		swatted_fly = true
+	if Input.is_action_just_pressed("swat") and ((not swatted_fly) or (swatted_fly and fly_two)):
 		$AnimationPlayer.play("swat")
-		$Control/NonBlocker/ObjectiveLabel.text = "Reorient yourself(explore)"
 		$Control/NonBlocker/SwatLabel.visible = false
+		$Fly.visible = false
+		if not fly_two:
+			$Control/NonBlocker/ObjectiveLabel.text = "Reorient yourself(explore)"
+		else:
+			$Control/NonBlocker/ObjectiveLabel.text = "Continue exploration"
+			fly_two = false
+
+		swatted_fly = true
 	
 	# Get the input direction and handle the movement/deceleration.
 	var input_dir = Input.get_vector("left", "right", "up", "down")
@@ -92,7 +100,7 @@ func _physics_process(delta):
 	move_and_slide()
 
 func _process(delta: float) -> void:
-	$Control/NonBlocker/SwatLabel.visible = not swatted_fly
+	$Control/NonBlocker/SwatLabel.visible = (not swatted_fly) or fly_two
 	
 	update_objective()
 
@@ -101,6 +109,13 @@ func update_objective():
 		$Control/NonBlocker/ObjectiveLabel.text = "Check phone"
 		got_call_once = true
 		Globals.telephone.ring()
+	
+	if int(went_in_balcony) + int(went_in_bathroom) + int(went_in_kitchen) + int(went_in_room_one) == 2 and not done_with_fly:
+		$Control/NonBlocker/ObjectiveLabel.text = "Swat the fly again"
+		fly_two = true
+		$Fly.visible = true
+		$Fly.can_move = true
+		done_with_fly = true
 
 func _headbob(time) -> Vector3:
 	var pos = Vector3.ZERO
