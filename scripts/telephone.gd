@@ -51,3 +51,4 @@ func _on_demand_finished() -> void:
 	Globals.player.make_white()
 	
 	stop_ring()
+	Globals.player.initiate_fly_killing()

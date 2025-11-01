@@ -62,7 +62,7 @@ func _physics_process(delta):
 	else:
 		speed = WALK_SPEED
 	
-	if Input.is_action_just_pressed("swat") and ((not swatted_fly) or (swatted_fly and fly_two)):
+	if Input.is_action_just_pressed("swat") and ((not swatted_fly) or (swatted_fly and fly_two)) and not $Control/NonBlocker/FlySacrificeLabel.visible:
 		$AnimationPlayer.play("swat")
 		$Control/NonBlocker/SwatLabel.visible = false
 		$Fly.visible = false
@@ -73,6 +73,8 @@ func _physics_process(delta):
 			fly_two = false
 
 		swatted_fly = true
+	elif Input.is_action_just_pressed("swat") and $Control/NonBlocker/FlySacrificeLabel.visible:
+		pass
 	
 	# Get the input direction and handle the movement/deceleration.
 	var input_dir = Input.get_vector("left", "right", "up", "down")
@@ -132,3 +134,8 @@ func make_white():
 func _on_animation_player_animation_finished(anim_name: StringName) -> void:
 	if anim_name == "make_black":
 		made_black.emit()
+
+func initiate_fly_killing():
+	$Control/NonBlocker/ObjectiveLabel.text = "S∆cr!f!ce S∆cr!f!ce S∆cr!f!ce S∆cr!f!ce S∆cr!f!ce S∆cr!f!ce S∆cr!f!ce S∆cr!f!ce S∆cr!f!ce S∆cr!f!ce S∆cr!f!ce S∆cr!f!ce S∆cr!f!ce S∆cr!f!ce S∆cr!f!ce S∆cr!f!ce S∆cr!f!ce S∆cr!f!ce S∆cr!f!ce S∆cr!f!ce S∆cr!f!ce S∆cr!f!ce"
+	$Control/NonBlocker/FlySacrificeLabel.visible = true
+	$Fly.visible = true
