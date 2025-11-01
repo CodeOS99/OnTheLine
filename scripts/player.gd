@@ -29,6 +29,8 @@ var went_in_balcony := false
 
 var got_call_once := false
 
+signal made_black
+
 func _ready():
 	Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
 	Globals.player = self
@@ -105,3 +107,13 @@ func _headbob(time) -> Vector3:
 	pos.y = sin(time * BOB_FREQ) * BOB_AMP
 	pos.x = cos(time * BOB_FREQ / 2) * BOB_AMP
 	return pos
+
+func make_black():
+	$AnimationPlayer.play("make_black")
+
+func make_white():
+	$AnimationPlayer.play("make_white")
+
+func _on_animation_player_animation_finished(anim_name: StringName) -> void:
+	if anim_name == "make_black":
+		made_black.emit()

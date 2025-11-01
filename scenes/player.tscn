@@ -1,4 +1,4 @@
-[gd_scene load_steps=19 format=3 uid="uid://ml6yku1jnh12"]
+[gd_scene load_steps=21 format=3 uid="uid://ml6yku1jnh12"]
 
 [ext_resource type="Script" path="res://scripts/player.gd" id="1_ifktf"]
 [ext_resource type="PackedScene" uid="uid://ksfj05usilnj" path="res://scenes/fly.tscn" id="2_u5xba"]
@@ -234,10 +234,43 @@ tracks/0/keys = {
 "values": [Color(0, 0, 0, 0), Color(0, 0, 0, 1), Color(0, 0, 0, 1), Color(0, 0, 0, 0)]
 }
 
+[sub_resource type="Animation" id="Animation_ckss1"]
+resource_name = "make_black"
+length = 0.5
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Control/Blocker2/Blocker:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(0, 0, 0, 0), Color(0, 0, 0, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_gadem"]
+resource_name = "make_white"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Control/Blocker2/Blocker:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(0, 0, 0, 1), Color(0, 0, 0, 0)]
+}
+
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_hchav"]
 _data = {
 "RESET": SubResource("Animation_3s1kq"),
 "fade": SubResource("Animation_0sgo0"),
+"make_black": SubResource("Animation_ckss1"),
+"make_white": SubResource("Animation_gadem"),
 "swat": SubResource("Animation_kv8w3"),
 "wake_up": SubResource("Animation_aixba")
 }
@@ -389,3 +422,5 @@ offset_bottom = 469.0
 grow_horizontal = 2
 grow_vertical = 2
 texture = SubResource("NoiseTexture2D_xv1en")
+
+[connection signal="animation_finished" from="AnimationPlayer" to="." method="_on_animation_player_animation_finished"]

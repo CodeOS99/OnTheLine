@@ -1,4 +1,4 @@
-[gd_scene load_steps=109 format=4 uid="uid://dccqy2dqnnw7s"]
+[gd_scene load_steps=108 format=4 uid="uid://dccqy2dqnnw7s"]
 
 [ext_resource type="PackedScene" uid="uid://ml6yku1jnh12" path="res://scenes/player.tscn" id="1_ogxde"]
 [ext_resource type="PackedScene" uid="uid://cusfkga27csnp" path="res://assets/drawer/Drawer A.fbx" id="2_r41v8"]
@@ -47,6 +47,7 @@
 [ext_resource type="ArrayMesh" uid="uid://dsrtk2my3w82r" path="res://assets/sfm-telephone/source/Telephone/Telephone.obj" id="40_s2ctn"]
 [ext_resource type="AudioStream" uid="uid://c5bc1lp0b4mg1" path="res://assets/audio/teleRing.mp3" id="41_68t57"]
 [ext_resource type="Script" path="res://scripts/telephone.gd" id="41_dhrod"]
+[ext_resource type="AudioStream" uid="uid://d2f3p4pd4urnf" path="res://assets/audio/demand.wav" id="48_r0g5f"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_cbpob"]
 sky_horizon_color = Color(0.64625, 0.65575, 0.67075, 1)
@@ -331,42 +332,6 @@ points = PackedVector3Array(-0.1525, -2.9175, -0.1525, -0.1525, -2.9175, 0.1525,
 [sub_resource type="BoxShape3D" id="BoxShape3D_cmxyt"]
 size = Vector3(3.80835, 6.32471, 7.49707)
 
-[sub_resource type="Animation" id="Animation_lt8r8"]
-resource_name = "ring"
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath(".:rotation")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.3, 0.433333, 0.566667),
-"transitions": PackedFloat32Array(1, 1, 1, 1),
-"update": 0,
-"values": [Vector3(0, 0, 0.261799), Vector3(0, 0, -0.122173), Vector3(0, 0, 0), Vector3(0, 0, 0.261799)]
-}
-
-[sub_resource type="Animation" id="Animation_xpby2"]
-length = 0.001
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath(".:rotation")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Vector3(0, 0, 0.261799)]
-}
-
-[sub_resource type="AnimationLibrary" id="AnimationLibrary_gd50k"]
-_data = {
-"RESET": SubResource("Animation_xpby2"),
-"ring": SubResource("Animation_lt8r8")
-}
-
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_rijas"]
 resource_name = "tv"
 cull_mode = 2
@@ -435,6 +400,9 @@ shadow_mesh = SubResource("ArrayMesh_vceny")
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_vln62"]
 size = Vector3(7.03284, 1.34668, 2.78156)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_xibc0"]
+size = Vector3(0.573242, 0.749023, 0.657104)
 
 [node name="MainGame" type="Node3D"]
 
@@ -863,27 +831,6 @@ shape = SubResource("BoxShape3D_cmxyt")
 
 [node name="MainHall" type="Node3D" parent="."]
 
-[node name="Telephone" type="MeshInstance3D" parent="MainHall"]
-transform = Transform3D(0.0482963, -0.012941, 0, 0.012941, 0.0482963, 0, 0, 0, 0.05, 1.85356, 2.26221, -6.10478)
-mesh = ExtResource("40_s2ctn")
-skeleton = NodePath("../..")
-script = ExtResource("41_dhrod")
-
-[node name="TeleRing" type="AudioStreamPlayer" parent="MainHall/Telephone"]
-stream = ExtResource("41_68t57")
-volume_db = -14.685
-
-[node name="OmniLight3D" type="OmniLight3D" parent="MainHall/Telephone"]
-transform = Transform3D(20, 0, 0, 0, 20, 0, 0, 0, 20, 0, 5.65043, 3.06127)
-light_color = Color(1, 0.407246, 0.338652, 1)
-light_energy = 0.515
-omni_range = 1.013
-
-[node name="AnimationPlayer" type="AnimationPlayer" parent="MainHall/Telephone"]
-libraries = {
-"": SubResource("AnimationLibrary_gd50k")
-}
-
 [node name="Rounded Table B" parent="MainHall" instance=ExtResource("40_0ru3l")]
 transform = Transform3D(0.6, 0, 0, 0, 0.6, 0, 0, 0, 0.6, 1.77533, 1.42062, -6.26177)
 
@@ -918,7 +865,35 @@ shape = SubResource("BoxShape3D_vln62")
 [node name="MainDoor" parent="MainHall" instance=ExtResource("6_ge32s")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.938, 3.267, -14.818)
 
+[node name="Telephone" type="StaticBody3D" parent="MainHall" groups=["interactable"]]
+script = ExtResource("41_dhrod")
+
+[node name="Telephone" type="MeshInstance3D" parent="MainHall/Telephone"]
+transform = Transform3D(0.05, 0, 0, 0, 0.05, 0, 0, 0, 0.05, 1.85356, 2.26221, -6.10478)
+mesh = ExtResource("40_s2ctn")
+skeleton = NodePath("../../..")
+
+[node name="TeleRing" type="AudioStreamPlayer" parent="MainHall/Telephone/Telephone"]
+stream = ExtResource("41_68t57")
+volume_db = -14.685
+
+[node name="Demand" type="AudioStreamPlayer" parent="MainHall/Telephone/Telephone"]
+stream = ExtResource("48_r0g5f")
+volume_db = -15.0
+
+[node name="OmniLight3D" type="OmniLight3D" parent="MainHall/Telephone/Telephone"]
+transform = Transform3D(20, 0, 0, 0, 20, 0, 0, 0, 20, 0, 5.65043, 3.06127)
+visible = false
+light_color = Color(1, 0.407246, 0.338652, 1)
+light_energy = 0.515
+omni_range = 1.013
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="MainHall/Telephone"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.85708, 2.34486, -6.07698)
+shape = SubResource("BoxShape3D_xibc0")
+
 [connection signal="body_entered" from="RoomOne/RoomOneCheck" to="RoomOne/RoomOneCheck" method="_on_body_entered"]
+[connection signal="finished" from="MainHall/Telephone/Telephone/Demand" to="MainHall/Telephone" method="_on_demand_finished"]
 
 [editable path="bottles"]
 [editable path="RoomTwo/Bed Single2"]
