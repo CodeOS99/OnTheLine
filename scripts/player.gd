@@ -38,7 +38,7 @@ func _ready():
 	Globals.player = self
 
 func _unhandled_input(event):
-	if $AnimationPlayer.is_playing() and $AnimationPlayer.current_animation == "wake_up":
+	if $AnimationPlayer.is_playing() and $AnimationPlayer.current_animation in ["wake_up", "fly_sacrifice"]:
 		return
 	if event is InputEventMouseMotion:
 		head.rotate_y(-event.relative.x * SENSITIVITY)
@@ -46,7 +46,7 @@ func _unhandled_input(event):
 		camera.rotation.x = clamp(camera.rotation.x, deg_to_rad(-40), deg_to_rad(60))
 
 func _physics_process(delta):
-	if $AnimationPlayer.is_playing() and $AnimationPlayer.current_animation == "wake_up":
+	if $AnimationPlayer.is_playing() and $AnimationPlayer.current_animation in ["wake_up", "fly_sacrifice"]:
 		return
 	# Add the gravity.
 	if not is_on_floor():
@@ -74,7 +74,8 @@ func _physics_process(delta):
 
 		swatted_fly = true
 	elif Input.is_action_just_pressed("swat") and $Control/NonBlocker/FlySacrificeLabel.visible:
-		pass
+		$Fly.can_move = false
+		$AnimationPlayer.play("fly_sacrifice")
 	
 	# Get the input direction and handle the movement/deceleration.
 	var input_dir = Input.get_vector("left", "right", "up", "down")
@@ -139,3 +140,4 @@ func initiate_fly_killing():
 	$Control/NonBlocker/ObjectiveLabel.text = "S∆cr!f!ce S∆cr!f!ce S∆cr!f!ce S∆cr!f!ce S∆cr!f!ce S∆cr!f!ce S∆cr!f!ce S∆cr!f!ce S∆cr!f!ce S∆cr!f!ce S∆cr!f!ce S∆cr!f!ce S∆cr!f!ce S∆cr!f!ce S∆cr!f!ce S∆cr!f!ce S∆cr!f!ce S∆cr!f!ce S∆cr!f!ce S∆cr!f!ce S∆cr!f!ce S∆cr!f!ce"
 	$Control/NonBlocker/FlySacrificeLabel.visible = true
 	$Fly.visible = true
+	$Fly.can_move = true

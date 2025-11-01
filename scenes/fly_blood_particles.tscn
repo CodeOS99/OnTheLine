@@ -1,0 +1,31 @@
+[gd_scene load_steps=6 format=3 uid="uid://bixjqambeppma"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_tytgp"]
+albedo_color = Color(0.242311, 2.19597e-07, 5.41471e-08, 1)
+metallic = 1.0
+roughness = 0.0
+
+[sub_resource type="Curve" id="Curve_5i3ui"]
+_data = [Vector2(0.0362319, 0.098901), 0.0, 0.0, 0, 0, Vector2(0.536232, 0.428571), 0.0, 0.0, 0, 0, Vector2(1, 0.582418), 0.0, 0.0, 0, 0]
+point_count = 3
+
+[sub_resource type="CurveTexture" id="CurveTexture_iyjqd"]
+curve = SubResource("Curve_5i3ui")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_8417q"]
+emission_shape = 1
+emission_sphere_radius = 1.0
+initial_velocity_min = -5.0
+initial_velocity_max = 5.0
+scale_max = 3.0
+scale_curve = SubResource("CurveTexture_iyjqd")
+
+[sub_resource type="SphereMesh" id="SphereMesh_3bcb3"]
+radius = 0.2
+height = 0.4
+
+[node name="FlyBloodParticles" type="GPUParticles3D"]
+material_override = SubResource("StandardMaterial3D_tytgp")
+explosiveness = 0.34
+process_material = SubResource("ParticleProcessMaterial_8417q")
+draw_pass_1 = SubResource("SphereMesh_3bcb3")

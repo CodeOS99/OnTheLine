@@ -1,9 +1,11 @@
-[gd_scene load_steps=24 format=3 uid="uid://ml6yku1jnh12"]
+[gd_scene load_steps=28 format=3 uid="uid://ml6yku1jnh12"]
 
 [ext_resource type="Script" path="res://scripts/player.gd" id="1_ifktf"]
 [ext_resource type="AudioStream" uid="uid://c2luak1q4kknj" path="res://assets/audio/fly_sacrifice.mp3" id="2_1yf56"]
 [ext_resource type="PackedScene" uid="uid://ksfj05usilnj" path="res://scenes/fly.tscn" id="2_u5xba"]
 [ext_resource type="FontFile" uid="uid://dvwm54tsyuaub" path="res://fonts/BitcountGridSingle-Regular.ttf" id="3_2mh62"]
+[ext_resource type="AudioStream" uid="uid://cwtywc5g08jsa" path="res://assets/audio/blood_fountain.mp3" id="3_2nrav"]
+[ext_resource type="PackedScene" uid="uid://bixjqambeppma" path="res://scenes/fly_blood_particles.tscn" id="3_jdqeq"]
 [ext_resource type="Script" path="res://scripts/interaction_cast.gd" id="3_jneyb"]
 [ext_resource type="Script" path="res://scripts/camera_3d.gd" id="4_p0tud"]
 
@@ -143,7 +145,7 @@ tracks/9/keys = {
 tracks/10/type = "value"
 tracks/10/imported = false
 tracks/10/enabled = true
-tracks/10/path = NodePath("FlySacrifice:playing")
+tracks/10/path = NodePath("Head/Camera3D:should_shake")
 tracks/10/interp = 1
 tracks/10/loop_wrap = true
 tracks/10/keys = {
@@ -155,26 +157,86 @@ tracks/10/keys = {
 tracks/11/type = "value"
 tracks/11/imported = false
 tracks/11/enabled = true
-tracks/11/path = NodePath("Head/Camera3D:should_shake")
+tracks/11/path = NodePath("Head/Hand2:rotation")
 tracks/11/interp = 1
 tracks/11/loop_wrap = true
 tracks/11/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [false]
+"update": 0,
+"values": [Vector3(0, 0, 0)]
 }
 tracks/12/type = "value"
 tracks/12/imported = false
 tracks/12/enabled = true
-tracks/12/path = NodePath("Head/Hand2:rotation")
+tracks/12/path = NodePath("Control/NonBlocker/TopDramaticBar:modulate")
 tracks/12/interp = 1
 tracks/12/loop_wrap = true
 tracks/12/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 0,
-"values": [Vector3(0, 0, 0)]
+"values": [Color(1, 1, 1, 0)]
+}
+tracks/13/type = "value"
+tracks/13/imported = false
+tracks/13/enabled = true
+tracks/13/path = NodePath("Control/NonBlocker/BottomDramaticBar:modulate")
+tracks/13/interp = 1
+tracks/13/loop_wrap = true
+tracks/13/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 0)]
+}
+tracks/14/type = "value"
+tracks/14/imported = false
+tracks/14/enabled = true
+tracks/14/path = NodePath("FlyBloodParticles:visible")
+tracks/14/interp = 1
+tracks/14/loop_wrap = true
+tracks/14/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/15/type = "value"
+tracks/15/imported = false
+tracks/15/enabled = true
+tracks/15/path = NodePath("InitialFlySpurt:playing")
+tracks/15/interp = 1
+tracks/15/loop_wrap = true
+tracks/15/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/16/type = "value"
+tracks/16/imported = false
+tracks/16/enabled = true
+tracks/16/path = NodePath("LaterFlyGurgle:playing")
+tracks/16/interp = 1
+tracks/16/loop_wrap = true
+tracks/16/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/17/type = "value"
+tracks/17/imported = false
+tracks/17/enabled = true
+tracks/17/path = NodePath("InitialFlySpurt:volume_db")
+tracks/17/interp = 1
+tracks/17/loop_wrap = true
+tracks/17/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [-20.0]
 }
 
 [sub_resource type="Animation" id="Animation_aixba"]
@@ -329,7 +391,7 @@ tracks/0/keys = {
 
 [sub_resource type="Animation" id="Animation_6b26f"]
 resource_name = "fly_sacrifice"
-length = 3.0
+length = 6.0
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
@@ -337,7 +399,7 @@ tracks/0/path = NodePath("Head/Hand:visible")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0),
+"times": PackedFloat32Array(0.633333),
 "transitions": PackedFloat32Array(1),
 "update": 1,
 "values": [true]
@@ -349,7 +411,7 @@ tracks/1/path = NodePath("Head/Hand2:visible")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
-"times": PackedFloat32Array(0),
+"times": PackedFloat32Array(0.633333),
 "transitions": PackedFloat32Array(1),
 "update": 1,
 "values": [true]
@@ -361,10 +423,10 @@ tracks/2/path = NodePath("Fly:position")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
+"times": PackedFloat32Array(0, 0.633333),
+"transitions": PackedFloat32Array(1, 1),
 "update": 0,
-"values": [Vector3(0, 1.16227, -3.04942)]
+"values": [Vector3(0, 1.16227, -3.04942), Vector3(0, 1.16227, -3.04942)]
 }
 tracks/3/type = "value"
 tracks/3/imported = false
@@ -373,10 +435,10 @@ tracks/3/path = NodePath("Head/Hand2:position")
 tracks/3/interp = 1
 tracks/3/loop_wrap = true
 tracks/3/keys = {
-"times": PackedFloat32Array(0, 0.4, 0.633333),
-"transitions": PackedFloat32Array(1, -2, -0.5),
+"times": PackedFloat32Array(0, 0.633333, 1.03333, 1.26667, 2.03333, 3.15, 3.55, 3.68333, 3.91667, 4.05, 4.23333, 4.33333, 4.5, 4.56667, 5.06667, 5.16667, 5.39583, 5.92917),
+"transitions": PackedFloat32Array(1, 1, -2, -0.5, -0.5, -2, -2, -0.5, -2, -0.5, -2, -0.5, -2, -0.5, -2, -0.5, 1, 1),
 "update": 0,
-"values": [Vector3(-1.115, -0.14, -3), Vector3(-1.115, -0.14, -3), Vector3(-0.025, -0.14, -3)]
+"values": [Vector3(-1.115, -0.14, -3), Vector3(-1.115, -0.14, -3), Vector3(-1.115, -0.14, -3), Vector3(-0.025, -0.14, -3), Vector3(-0.025, -0.14, -3), Vector3(-1.115, -0.14, -3), Vector3(-1.115, -0.14, -3), Vector3(-0.025, -0.14, -3), Vector3(-1.115, -0.14, -3), Vector3(-0.025, -0.14, -3), Vector3(-1.115, -0.14, -3), Vector3(-0.025, -0.14, -3), Vector3(-1.115, -0.14, -3), Vector3(-0.025, -0.14, -3), Vector3(-1.2345, -0.14, -3), Vector3(-0.025, -0.14, -3), Vector3(-1.115, -0.14, -3), Vector3(1.23655, -1.67752, -1.14285)]
 }
 tracks/4/type = "value"
 tracks/4/imported = false
@@ -385,58 +447,118 @@ tracks/4/path = NodePath("Head/Hand:position")
 tracks/4/interp = 1
 tracks/4/loop_wrap = true
 tracks/4/keys = {
-"times": PackedFloat32Array(0, 0.4, 0.633333),
-"transitions": PackedFloat32Array(1, -2, -0.5),
+"times": PackedFloat32Array(0, 0.633333, 1.03333, 1.26667, 2.03333, 3.15, 3.55, 3.68333, 3.91667, 4.05, 4.23333, 4.33333, 4.5, 4.56667, 5.06667, 5.16667, 5.39583, 5.92917),
+"transitions": PackedFloat32Array(1, 1, -2, -0.5, -0.5, -2, -2, -0.5, -2, -0.5, -2, -0.5, -2, -0.5, -2, -0.5, 2, 1),
 "update": 0,
-"values": [Vector3(1.055, -0.14, -3), Vector3(1.055, -0.14, -3), Vector3(0.055, -0.14, -3)]
+"values": [Vector3(1.055, -0.14, -3), Vector3(1.055, -0.14, -3), Vector3(1.055, -0.14, -3), Vector3(0.055, -0.14, -3), Vector3(0.055, -0.14, -3), Vector3(1.055, -0.14, -3), Vector3(1.055, -0.14, -3), Vector3(0.055, -0.14, -3), Vector3(1.055, -0.14, -3), Vector3(0.055, -0.14, -3), Vector3(1.055, -0.14, -3), Vector3(0.055, -0.14, -3), Vector3(1.055, -0.14, -3), Vector3(0.055, -0.14, -3), Vector3(1.22641, -0.14, -3), Vector3(0.055, -0.14, -3), Vector3(1.055, -0.14, -3), Vector3(-1.2506, -1.55483, -1.34715)]
 }
 tracks/5/type = "value"
 tracks/5/imported = false
 tracks/5/enabled = true
-tracks/5/path = NodePath("FlySacrifice:playing")
+tracks/5/path = NodePath("Head/Camera3D:should_shake")
 tracks/5/interp = 1
 tracks/5/loop_wrap = true
 tracks/5/keys = {
-"times": PackedFloat32Array(0.6),
-"transitions": PackedFloat32Array(1),
+"times": PackedFloat32Array(1.23333, 3.68333, 5.13333),
+"transitions": PackedFloat32Array(1, 1, 1),
 "update": 1,
-"values": [true]
+"values": [true, true, true]
 }
 tracks/6/type = "value"
 tracks/6/imported = false
 tracks/6/enabled = true
-tracks/6/path = NodePath("Head/Camera3D:should_shake")
+tracks/6/path = NodePath("Head/Hand:rotation")
 tracks/6/interp = 1
 tracks/6/loop_wrap = true
 tracks/6/keys = {
-"times": PackedFloat32Array(0.6),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [true]
+"times": PackedFloat32Array(0, 0.633333, 5.39583, 5.92917),
+"transitions": PackedFloat32Array(1, 1, 2, 1),
+"update": 0,
+"values": [Vector3(0, 0, 1.5708), Vector3(0, 0, 1.5708), Vector3(0, 0, 1.5708), Vector3(0, 0, 0)]
 }
 tracks/7/type = "value"
 tracks/7/imported = false
 tracks/7/enabled = true
-tracks/7/path = NodePath("Head/Hand:rotation")
+tracks/7/path = NodePath("Head/Hand2:rotation")
 tracks/7/interp = 1
 tracks/7/loop_wrap = true
 tracks/7/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
+"times": PackedFloat32Array(0, 0.633333, 5.39583, 5.92917),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
 "update": 0,
-"values": [Vector3(0, 0, 1.5708)]
+"values": [Vector3(0, 0, 1.5708), Vector3(0, 0, 1.5708), Vector3(0, 0, 1.5708), Vector3(0, 0, 0)]
 }
 tracks/8/type = "value"
 tracks/8/imported = false
 tracks/8/enabled = true
-tracks/8/path = NodePath("Head/Hand2:rotation")
+tracks/8/path = NodePath("Control/NonBlocker/TopDramaticBar:modulate")
 tracks/8/interp = 1
 tracks/8/loop_wrap = true
 tracks/8/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
+"times": PackedFloat32Array(0, 0.566667, 5.39583, 5.92917),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
 "update": 0,
-"values": [Vector3(0, 0, 1.5708)]
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1), Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
+}
+tracks/9/type = "value"
+tracks/9/imported = false
+tracks/9/enabled = true
+tracks/9/path = NodePath("Control/NonBlocker/BottomDramaticBar:modulate")
+tracks/9/interp = 1
+tracks/9/loop_wrap = true
+tracks/9/keys = {
+"times": PackedFloat32Array(0, 0.566667, 5.39583, 5.92917),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1), Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
+}
+tracks/10/type = "value"
+tracks/10/imported = false
+tracks/10/enabled = true
+tracks/10/path = NodePath("FlyBloodParticles:visible")
+tracks/10/interp = 1
+tracks/10/loop_wrap = true
+tracks/10/keys = {
+"times": PackedFloat32Array(1.23333),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/11/type = "value"
+tracks/11/imported = false
+tracks/11/enabled = true
+tracks/11/path = NodePath("InitialFlySpurt:playing")
+tracks/11/interp = 1
+tracks/11/loop_wrap = true
+tracks/11/keys = {
+"times": PackedFloat32Array(1.26667, 3.51667, 3.91667),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 1,
+"values": [true, true, true]
+}
+tracks/12/type = "value"
+tracks/12/imported = false
+tracks/12/enabled = true
+tracks/12/path = NodePath("LaterFlyGurgle:playing")
+tracks/12/interp = 1
+tracks/12/loop_wrap = true
+tracks/12/keys = {
+"times": PackedFloat32Array(1.23333),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/13/type = "value"
+tracks/13/imported = false
+tracks/13/enabled = true
+tracks/13/path = NodePath("InitialFlySpurt:volume_db")
+tracks/13/interp = 1
+tracks/13/loop_wrap = true
+tracks/13/keys = {
+"times": PackedFloat32Array(1.26667, 3.51667, 3.91667),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [-20.0, -30.0, -40.0]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_hchav"]
@@ -461,6 +583,13 @@ width = 1
 height = 1
 noise = SubResource("FastNoiseLite_fmcwo")
 
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_7ss3t"]
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_5scdp"]
+width = 1
+height = 1
+noise = SubResource("FastNoiseLite_7ss3t")
+
 [sub_resource type="FastNoiseLite" id="FastNoiseLite_71d7h"]
 
 [sub_resource type="NoiseTexture2D" id="NoiseTexture2D_xv1en"]
@@ -469,8 +598,18 @@ noise = SubResource("FastNoiseLite_71d7h")
 [node name="Player" type="CharacterBody3D" groups=["player"]]
 script = ExtResource("1_ifktf")
 
-[node name="FlySacrifice" type="AudioStreamPlayer" parent="."]
+[node name="InitialFlySpurt" type="AudioStreamPlayer3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0175874, 1.16734, -3.06752)
 stream = ExtResource("2_1yf56")
+volume_db = -20.0
+
+[node name="LaterFlyGurgle" type="AudioStreamPlayer3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0175874, 1.16734, -3.06752)
+stream = ExtResource("3_2nrav")
+
+[node name="FlyBloodParticles" parent="." instance=ExtResource("3_jdqeq")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.27649, -3.42203)
+visible = false
 
 [node name="Fly" parent="." node_paths=PackedStringArray("player") instance=ExtResource("2_u5xba")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -2.78431)
@@ -490,6 +629,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.42656, 0)
 
 [node name="Camera3D" type="Camera3D" parent="Head"]
 script = ExtResource("4_p0tud")
+period = 0.6
 
 [node name="InteractionCast" type="ShapeCast3D" parent="Head/Camera3D"]
 transform = Transform3D(1.91069e-15, -4.37114e-08, -1, -1, -4.37114e-08, 0, -4.37114e-08, 1, -4.37114e-08, 0, 0, 0)
@@ -601,6 +741,27 @@ offset_bottom = 39.0
 grow_horizontal = 2
 grow_vertical = 2
 text = "C1!ck to S∆cr!f!ce"
+
+[node name="TopDramaticBar" type="TextureRect" parent="Control/NonBlocker"]
+modulate = Color(1, 1, 1, 0)
+layout_mode = 1
+anchors_preset = 10
+anchor_right = 1.0
+offset_bottom = 65.0
+grow_horizontal = 2
+texture = SubResource("NoiseTexture2D_5scdp")
+
+[node name="BottomDramaticBar" type="TextureRect" parent="Control/NonBlocker"]
+modulate = Color(1, 1, 1, 0)
+layout_mode = 1
+anchors_preset = 12
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = -62.0
+grow_horizontal = 2
+grow_vertical = 0
+texture = SubResource("NoiseTexture2D_5scdp")
 
 [node name="Blocker2" type="Control" parent="Control"]
 layout_mode = 1
