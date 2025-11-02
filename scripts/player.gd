@@ -36,6 +36,7 @@ signal made_black
 func _ready():
 	Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
 	Globals.player = self
+	$Fly.visible = true
 
 func _unhandled_input(event):
 	if $AnimationPlayer.is_playing() and $AnimationPlayer.current_animation in ["wake_up", "fly_sacrifice"]:
@@ -135,6 +136,8 @@ func make_white():
 func _on_animation_player_animation_finished(anim_name: StringName) -> void:
 	if anim_name == "make_black":
 		made_black.emit()
+	if anim_name == "fly_sacrifice":
+		pass # TODO update objective and kill plant
 
 func initiate_fly_killing():
 	$Control/NonBlocker/ObjectiveLabel.text = "S∆cr!f!ce S∆cr!f!ce S∆cr!f!ce S∆cr!f!ce S∆cr!f!ce S∆cr!f!ce S∆cr!f!ce S∆cr!f!ce S∆cr!f!ce S∆cr!f!ce S∆cr!f!ce S∆cr!f!ce S∆cr!f!ce S∆cr!f!ce S∆cr!f!ce S∆cr!f!ce S∆cr!f!ce S∆cr!f!ce S∆cr!f!ce S∆cr!f!ce S∆cr!f!ce S∆cr!f!ce"

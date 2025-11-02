@@ -1,7 +1,9 @@
-[gd_scene load_steps=5 format=3 uid="uid://dlgqqudk663k8"]
+[gd_scene load_steps=7 format=3 uid="uid://dlgqqudk663k8"]
 
+[ext_resource type="AudioStream" uid="uid://csfghi27by786" path="res://assets/audio/buzz_fly.mp3" id="1_3tck0"]
 [ext_resource type="Texture2D" uid="uid://bs1fscktj63nw" path="res://icon.svg" id="1_egfqr"]
 [ext_resource type="Script" path="res://scripts/play_button.gd" id="2_dowa6"]
+[ext_resource type="AudioStream" uid="uid://du8w51okbwvqd" path="res://assets/audio/tv_static.mp3" id="2_lolhr"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_55myw"]
 bg_color = Color(0.212305, 0.212305, 0.212305, 1)
@@ -15,6 +17,16 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+
+[node name="FlyBuzz" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("1_3tck0")
+volume_db = -10.0
+autoplay = true
+
+[node name="TvStatic" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("2_lolhr")
+volume_db = -20.0
+autoplay = true
 
 [node name="TextureRect" type="TextureRect" parent="."]
 modulate = Color(0, 0, 0, 1)

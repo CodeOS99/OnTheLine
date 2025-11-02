@@ -22,6 +22,12 @@ func _process(delta: float) -> void:
 	if not can_move:
 		return
 	
+	if visible:
+		if not $AudioStreamPlayer3D.playing:
+			$AudioStreamPlayer3D.play()
+	else:
+		$AudioStreamPlayer3D.stop()
+	
 	if not player:
 		print("No player?S?????")
 		return

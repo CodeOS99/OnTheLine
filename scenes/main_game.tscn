@@ -1,4 +1,4 @@
-[gd_scene load_steps=114 format=4 uid="uid://dccqy2dqnnw7s"]
+[gd_scene load_steps=115 format=4 uid="uid://dccqy2dqnnw7s"]
 
 [ext_resource type="PackedScene" uid="uid://ml6yku1jnh12" path="res://scenes/player.tscn" id="1_ogxde"]
 [ext_resource type="Texture2D" uid="uid://0y7hvggi0p24" path="res://assets/textures/concrete_1k/Concrete047A_1K-JPG_Color.jpg" id="2_25ymp"]
@@ -53,6 +53,7 @@
 [ext_resource type="AudioStream" uid="uid://c5bc1lp0b4mg1" path="res://assets/audio/teleRing.mp3" id="41_68t57"]
 [ext_resource type="Script" path="res://scripts/telephone.gd" id="41_dhrod"]
 [ext_resource type="AudioStream" uid="uid://d2f3p4pd4urnf" path="res://assets/audio/demand.wav" id="48_r0g5f"]
+[ext_resource type="AudioStream" uid="uid://du8w51okbwvqd" path="res://assets/audio/tv_static.mp3" id="49_rl4wp"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_cbpob"]
 sky_horizon_color = Color(0.64625, 0.65575, 0.67075, 1)
@@ -894,6 +895,12 @@ mesh = SubResource("ArrayMesh_fm2po")
 
 [node name="Text" parent="MainHall/tv" index="3"]
 transform = Transform3D(8.88178e-16, 0.15, 0, 0, 0, -0.15, -0.15, 8.88178e-16, 0, -0.017148, -2.23265, -5.08117)
+
+[node name="AudioStreamPlayer3D" type="AudioStreamPlayer3D" parent="MainHall/tv"]
+transform = Transform3D(0.966184, 0, 3.55271e-15, 0, 0.966184, 0, -3.55271e-15, 0, 0.966184, 0, -1.25082, -5.3534)
+stream = ExtResource("49_rl4wp")
+volume_db = -18.0
+autoplay = true
 
 [node name="Sofa" type="StaticBody3D" parent="MainHall"]
 
