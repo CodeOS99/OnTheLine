@@ -20,7 +20,7 @@ grow_vertical = 2
 
 [node name="FlyBuzz" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("1_3tck0")
-volume_db = -10.0
+volume_db = -5.0
 autoplay = true
 
 [node name="TvStatic" type="AudioStreamPlayer" parent="."]

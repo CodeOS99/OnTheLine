@@ -7,5 +7,6 @@ func used():
 	tween.tween_property($"..", "rotation", Vector3(0, target_ang, 0), 1.5)\
 		.set_ease(Tween.EASE_IN_OUT)\
 		.set_trans(Tween.TRANS_SINE)
+	$"../../DoorCreak".play()
 	
 	target_ang = 0 if target_ang != 0 else 75*PI/180
