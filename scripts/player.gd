@@ -1,8 +1,8 @@
 class_name Player extends CharacterBody3D
 
 var speed
-const WALK_SPEED = 5.0
-const SPRINT_SPEED = 8.0
+const WALK_SPEED = 3.0
+const SPRINT_SPEED = 6.0
 const JUMP_VELOCITY = 9.8
 const SENSITIVITY = 0.004
 
@@ -62,25 +62,20 @@ func _physics_process(delta):
 		speed = SPRINT_SPEED
 	else:
 		speed = WALK_SPEED
-	
-	if Input.is_action_just_pressed("swat") and ((not swatted_fly) or (swatted_fly and fly_two)) and not $Control/NonBlocker/FlySacrificeLabel.visible:
-		$AnimationPlayer.play("swat")
-		$Control/NonBlocker/SwatLabel.visible = false
-		$Fly.visible = false
-		if not fly_two:
-			$Control/NonBlocker/ObjectiveLabel.text = "Reorient yourself(explore)"
-		else:
-			$Control/NonBlocker/ObjectiveLabel.text = "Continue exploration"
-			fly_two = false
-
-		swatted_fly = true
-	elif Input.is_action_just_pressed("swat") and $Control/NonBlocker/FlySacrificeLabel.visible:
-		$Fly.can_move = false
-		$AnimationPlayer.play("fly_sacrifice")
-	
+		
 	# Get the input direction and handle the movement/deceleration.
 	var input_dir = Input.get_vector("left", "right", "up", "down")
 	var direction = (head.transform.basis * transform.basis * Vector3(input_dir.x, 0, input_dir.y)).normalized()
+	if direction != Vector3.ZERO:
+		if not $footsteps.playing:
+			$footsteps.play()
+		$footsteps.set_stream_paused(false)
+		if speed == WALK_SPEED:
+			$footsteps.pitch_scale = 1
+		else:
+			$footsteps.pitch_scale = SPRINT_SPEED/WALK_SPEED + .05
+	else:
+		$footsteps.set_stream_paused(true)
 	if is_on_floor():
 		if direction:
 			velocity.x = direction.x * speed
@@ -107,6 +102,20 @@ func _process(delta: float) -> void:
 	$Control/NonBlocker/SwatLabel.visible = (not swatted_fly) or fly_two
 	
 	update_objective()
+	
+	if Input.is_action_just_pressed("swat") and ((not swatted_fly) or (swatted_fly and fly_two)) and not $Control/NonBlocker/FlySacrificeLabel.visible:
+		$AnimationPlayer.play("swat")
+		$Control/NonBlocker/SwatLabel.visible = false
+		$Fly.visible = false
+		if not fly_two:
+			$Control/NonBlocker/ObjectiveLabel.text = "Reorient yourself(explore)"
+		else:
+			$Control/NonBlocker/ObjectiveLabel.text = "Continue exploration"
+			fly_two = false
+		swatted_fly = true
+	elif Input.is_action_just_pressed("swat") and $Control/NonBlocker/FlySacrificeLabel.visible:
+		$Fly.can_move = false
+		$AnimationPlayer.play("fly_sacrifice")
 
 func update_objective():
 	if went_in_balcony and went_in_bathroom and went_in_kitchen and went_in_room_one and not got_call_once:
