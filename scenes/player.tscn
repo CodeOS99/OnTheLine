@@ -1,4 +1,4 @@
-[gd_scene load_steps=34 format=3 uid="uid://ml6yku1jnh12"]
+[gd_scene load_steps=33 format=3 uid="uid://ml6yku1jnh12"]
 
 [ext_resource type="Script" path="res://scripts/player.gd" id="1_ifktf"]
 [ext_resource type="AudioStream" uid="uid://c2luak1q4kknj" path="res://assets/audio/fly_sacrifice.mp3" id="2_1yf56"]
@@ -11,7 +11,6 @@
 [ext_resource type="Script" path="res://scripts/interaction_cast.gd" id="3_jneyb"]
 [ext_resource type="AudioStream" uid="uid://bvvee4ypugue4" path="res://assets/audio/breathing_scary.mp3" id="3_yl5i3"]
 [ext_resource type="Script" path="res://scripts/camera_3d.gd" id="4_p0tud"]
-[ext_resource type="AudioStream" uid="uid://dwrbvg3rxa3xs" path="res://assets/audio/ominousBG.mp3" id="5_jqdc1"]
 [ext_resource type="AudioStream" uid="uid://cx8e5l15h507k" path="res://assets/audio/footsteps.mp3" id="9_igloy"]
 [ext_resource type="AudioStream" uid="uid://dnr2u76pw6ivu" path="res://assets/audio/normal_breath.mp3" id="12_5xil5"]
 
@@ -758,10 +757,6 @@ volume_db = 10.0
 [node name="BreathingScary" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("3_yl5i3")
 volume_db = 5.0
-
-[node name="OminousBg" type="AudioStreamPlayer" parent="."]
-stream = ExtResource("5_jqdc1")
-autoplay = true
 
 [node name="InitialFlySpurt" type="AudioStreamPlayer3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0175874, 1.16734, -3.06752)
