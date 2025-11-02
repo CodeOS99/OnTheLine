@@ -1,0 +1,23 @@
+[gd_scene load_steps=5 format=3 uid="uid://d1bp1feyfimr"]
+
+[ext_resource type="Script" path="res://scripts/light_switch.gd" id="1_m6lb2"]
+[ext_resource type="PackedScene" uid="uid://brhcq67kqjkqm" path="res://assets/lights/Light Switch.fbx" id="2_opcem"]
+[ext_resource type="AudioStream" uid="uid://b42vdp8w7n47k" path="res://assets/audio/switch_click.mp3" id="3_rwvv5"]
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_66fka"]
+
+[node name="LightSwitch" type="StaticBody3D" groups=["interactable"]]
+script = ExtResource("1_m6lb2")
+
+[node name="Light Switch" parent="." instance=ExtResource("2_opcem")]
+
+[node name="OmniLight3D" type="OmniLight3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0.470169)
+omni_range = 1.86245
+
+[node name="SwitchClick" type="AudioStreamPlayer3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0420937, 5.96046e-08, -0.10996)
+stream = ExtResource("3_rwvv5")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="." groups=["interactable"]]
+shape = SubResource("SphereShape3D_66fka")

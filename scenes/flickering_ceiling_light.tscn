@@ -1,3 +1,24 @@
-[gd_scene format=3 uid="uid://kiy4vdfvycnr"]
+[gd_scene load_steps=4 format=3 uid="uid://kiy4vdfvycnr"]
 
-[node name="FlickeringCeilingLight" type="Node3D"]
+[ext_resource type="Script" path="res://scripts/flickering_ceiling_light.gd" id="1_cm5gf"]
+[ext_resource type="AudioStream" uid="uid://8wdrr2ae3fh8" path="res://assets/audio/light_hum.mp3" id="1_jp07q"]
+[ext_resource type="PackedScene" uid="uid://3vtmtva47uh4" path="res://assets/lights/Ceiling Light.fbx" id="2_oqnse"]
+
+[node name="FlickeringCeilingLight" type="Node3D" node_paths=PackedStringArray("audio_player")]
+script = ExtResource("1_cm5gf")
+flicker_intensity = 0.185
+flicker_speed = 13.5
+blackout_duration = 0.315
+audio_player = NodePath("LightHum")
+
+[node name="LightHum" type="AudioStreamPlayer3D" parent="."]
+stream = ExtResource("1_jp07q")
+volume_db = 8.0
+autoplay = true
+
+[node name="Ceiling Light" parent="." instance=ExtResource("2_oqnse")]
+transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 0, 0, 0)
+
+[node name="OmniLight3D" type="OmniLight3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -7.78178, 0)
+omni_range = 7.0

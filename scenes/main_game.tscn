@@ -1,4 +1,4 @@
-[gd_scene load_steps=115 format=4 uid="uid://dccqy2dqnnw7s"]
+[gd_scene load_steps=117 format=4 uid="uid://dccqy2dqnnw7s"]
 
 [ext_resource type="PackedScene" uid="uid://ml6yku1jnh12" path="res://scenes/player.tscn" id="1_ogxde"]
 [ext_resource type="Texture2D" uid="uid://0y7hvggi0p24" path="res://assets/textures/concrete_1k/Concrete047A_1K-JPG_Color.jpg" id="2_25ymp"]
@@ -54,6 +54,8 @@
 [ext_resource type="Script" path="res://scripts/telephone.gd" id="41_dhrod"]
 [ext_resource type="AudioStream" uid="uid://d2f3p4pd4urnf" path="res://assets/audio/demand.wav" id="48_r0g5f"]
 [ext_resource type="AudioStream" uid="uid://du8w51okbwvqd" path="res://assets/audio/tv_static.mp3" id="49_rl4wp"]
+[ext_resource type="PackedScene" uid="uid://kiy4vdfvycnr" path="res://scenes/flickering_ceiling_light.tscn" id="55_i8c2o"]
+[ext_resource type="PackedScene" uid="uid://d1bp1feyfimr" path="res://scenes/light_switch.tscn" id="56_f3x1w"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_cbpob"]
 sky_horizon_color = Color(0.64625, 0.65575, 0.67075, 1)
@@ -943,6 +945,17 @@ omni_range = 1.013
 [node name="CollisionShape3D" type="CollisionShape3D" parent="MainHall/Telephone"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.85708, 2.34486, -6.07698)
 shape = SubResource("BoxShape3D_xibc0")
+
+[node name="FlickeringCeilingLight" parent="MainHall" instance=ExtResource("55_i8c2o")]
+transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, -2.88517, 6.44732, 3.27947)
+
+[node name="FlickeringCeilingLight" parent="." instance=ExtResource("55_i8c2o")]
+transform = Transform3D(-0.495088, 0, 0.0699149, 0, 0.5, 0, -0.0699149, 0, -0.495088, -19.5225, 6.93875, 0.0628629)
+lights_on = false
+
+[node name="LightSwitch" parent="." node_paths=PackedStringArray("target_light") instance=ExtResource("56_f3x1w")]
+transform = Transform3D(-0.990176, 0, 0.13983, 0, 1, 0, -0.13983, 0, -0.990176, -11, 2.27853, 1.71647)
+target_light = NodePath("../FlickeringCeilingLight")
 
 [connection signal="body_entered" from="RoomOne/RoomOneCheck" to="RoomOne/RoomOneCheck" method="_on_body_entered"]
 [connection signal="finished" from="MainHall/Telephone/Telephone/Demand" to="MainHall/Telephone" method="_on_demand_finished"]
