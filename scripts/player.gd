@@ -2,8 +2,6 @@ class_name Player extends CharacterBody3D
 
 var speed
 const WALK_SPEED = 3.0
-const SPRINT_SPEED = 6.0
-const JUMP_VELOCITY = 9.8
 const SENSITIVITY = 0.004
 
 #bob variables
@@ -39,7 +37,7 @@ func _ready():
 	$Fly.visible = true
 
 func _unhandled_input(event):
-	if $AnimationPlayer.is_playing() and $AnimationPlayer.current_animation in ["wake_up", "fly_sacrifice"]:
+	if ($AnimationPlayer.is_playing() and $AnimationPlayer.current_animation in ["wake_up", "fly_sacrifice"]) or ($Control/Blocker2/Blocker.modulate.a >= 240):
 		return
 	if event is InputEventMouseMotion:
 		head.rotate_y(-event.relative.x * SENSITIVITY)
@@ -47,21 +45,12 @@ func _unhandled_input(event):
 		camera.rotation.x = clamp(camera.rotation.x, deg_to_rad(-40), deg_to_rad(60))
 
 func _physics_process(delta):
-	if $AnimationPlayer.is_playing() and $AnimationPlayer.current_animation in ["wake_up", "fly_sacrifice"]:
+	if ($AnimationPlayer.is_playing() and $AnimationPlayer.current_animation in ["wake_up", "fly_sacrifice"]) or ($Control/Blocker2/Blocker.modulate.a >= 240):
 		return
 	# Add the gravity.
 	if not is_on_floor():
 		velocity.y -= gravity * delta
-
-	# Handle Jump.
-	if Input.is_action_just_pressed("jump") and is_on_floor():
-		velocity.y = JUMP_VELOCITY
-	
-	# Handle Sprint.
-	if Input.is_action_pressed("sprint"):
-		speed = SPRINT_SPEED
-	else:
-		speed = WALK_SPEED
+	speed = WALK_SPEED
 		
 	# Get the input direction and handle the movement/deceleration.
 	var input_dir = Input.get_vector("left", "right", "up", "down")
@@ -70,10 +59,6 @@ func _physics_process(delta):
 		if not $footsteps.playing:
 			$footsteps.play()
 		$footsteps.set_stream_paused(false)
-		if speed == WALK_SPEED:
-			$footsteps.pitch_scale = 1
-		else:
-			$footsteps.pitch_scale = SPRINT_SPEED/WALK_SPEED + .05
 	else:
 		$footsteps.set_stream_paused(true)
 	if is_on_floor():
@@ -92,7 +77,7 @@ func _physics_process(delta):
 	camera.transform.origin = _headbob(t_bob)
 	
 	# FOV
-	var velocity_clamped = clamp(velocity.length(), 0.5, SPRINT_SPEED * 2)
+	var velocity_clamped = clamp(velocity.length(), 0.5, WALK_SPEED * 2)
 	var target_fov = BASE_FOV + FOV_CHANGE * velocity_clamped
 	camera.fov = lerp(camera.fov, target_fov, delta * 8.0)
 	
@@ -146,7 +131,7 @@ func _on_animation_player_animation_finished(anim_name: StringName) -> void:
 	if anim_name == "make_black":
 		made_black.emit()
 	if anim_name == "fly_sacrifice":
-		pass # TODO update objective and kill plant
+		make_black()
 
 func initiate_fly_killing():
 	$Control/NonBlocker/ObjectiveLabel.text = "S∆cr!f!ce S∆cr!f!ce S∆cr!f!ce S∆cr!f!ce S∆cr!f!ce S∆cr!f!ce S∆cr!f!ce S∆cr!f!ce S∆cr!f!ce S∆cr!f!ce S∆cr!f!ce S∆cr!f!ce S∆cr!f!ce S∆cr!f!ce S∆cr!f!ce S∆cr!f!ce S∆cr!f!ce S∆cr!f!ce S∆cr!f!ce S∆cr!f!ce S∆cr!f!ce S∆cr!f!ce"
@@ -158,3 +143,7 @@ func get_scared():
 	$Heartbeat.play()
 	$BreathingScary.play()
 	$Head/Camera3D.should_shake = true
+	$NormalBreath.stop()
+
+func _on_breathing_scary_finished() -> void:
+	$NormalBreath.play()

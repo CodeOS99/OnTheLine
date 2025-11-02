@@ -895,6 +895,10 @@ script = ExtResource("37_gosp0")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -27.2115, 3.37045, -0.129883)
 shape = SubResource("BoxShape3D_0t0wj")
 
+[node name="OmniLight3D" type="OmniLight3D" parent="BathRoom"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -30.7649, 3.82262, -3.57811)
+light_color = Color(1, 0, 0, 1)
+
 [node name="Mirror B" parent="." instance=ExtResource("39_jwtn1")]
 transform = Transform3D(0.7, 0, 0, 0, 0.7, 0, 0, 0, 0.7, -30.7464, 3.84135, -3.65603)
 
@@ -1051,6 +1055,7 @@ transform = Transform3D(-0.990176, 0, 0.13983, 0, 1, 0, -0.13983, 0, -0.990176, 
 [connection signal="body_entered" from="RoomOne/RoomOneCheck" to="RoomOne/RoomOneCheck" method="_on_body_entered"]
 [connection signal="finished" from="MainHall/Telephone/Telephone/Demand" to="MainHall/Telephone" method="_on_demand_finished"]
 
+[editable path="Kitchen/Clock"]
 [editable path="bottles"]
 [editable path="RoomTwo/Bed Single2"]
 [editable path="MainHall/tv"]
