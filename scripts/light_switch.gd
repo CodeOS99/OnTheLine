@@ -1,5 +1,5 @@
 extends StaticBody3D
-@export var target_light: FlickeringCeilingLight
+@onready var target_light: FlickeringCeilingLight = $"../FlickeringCeilingLight"
 
 func used():
 	target_light.lights_on = not target_light.lights_on

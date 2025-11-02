@@ -153,3 +153,7 @@ func initiate_fly_killing():
 	$Control/NonBlocker/FlySacrificeLabel.visible = true
 	$Fly.visible = true
 	$Fly.can_move = true
+
+func get_scared():
+	$Heartbeat.play()
+	$BreathingScary.play()

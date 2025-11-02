@@ -1,4 +1,4 @@
-[gd_scene load_steps=117 format=4 uid="uid://dccqy2dqnnw7s"]
+[gd_scene load_steps=126 format=4 uid="uid://dccqy2dqnnw7s"]
 
 [ext_resource type="PackedScene" uid="uid://ml6yku1jnh12" path="res://scenes/player.tscn" id="1_ogxde"]
 [ext_resource type="Texture2D" uid="uid://0y7hvggi0p24" path="res://assets/textures/concrete_1k/Concrete047A_1K-JPG_Color.jpg" id="2_25ymp"]
@@ -33,9 +33,15 @@
 [ext_resource type="PackedScene" uid="uid://cc533stomd3dm" path="res://assets/broom/Broom.fbx" id="15_xv45s"]
 [ext_resource type="PackedScene" uid="uid://c77j304lantfn" path="res://assets/plant/Plant A.fbx" id="16_xlvks"]
 [ext_resource type="PackedScene" uid="uid://cmrub44d4ooyq" path="res://assets/plant/Plant B.fbx" id="17_fa25w"]
+[ext_resource type="Script" path="res://scripts/ceiling_fan.gd" id="17_v0sn7"]
+[ext_resource type="AudioStream" uid="uid://b4fc4bjtimmdw" path="res://assets/audio/fan_whoosh.mp3" id="18_fmhk2"]
+[ext_resource type="PackedScene" uid="uid://qpfxvqwppjk8" path="res://scenes/breaking_particles.tscn" id="18_vy2aq"]
 [ext_resource type="PackedScene" uid="uid://b56qifet63ceq" path="res://assets/kitchen/Rounded Table A.fbx" id="19_oejc2"]
+[ext_resource type="AudioStream" uid="uid://gf8ywa5kv5wk" path="res://assets/audio/glass_break_one.mp3" id="19_qo6p4"]
 [ext_resource type="PackedScene" uid="uid://blcua5k4axb2l" path="res://assets/kitchen/Chair A.fbx" id="20_1fsr0"]
+[ext_resource type="AudioStream" uid="uid://dw2hi4xu6x1ye" path="res://assets/audio/glass_break_two.mp3" id="20_yhvbi"]
 [ext_resource type="PackedScene" uid="uid://bla4kdnmq84cv" path="res://assets/kitchen/Vase.fbx" id="21_5dvqq"]
+[ext_resource type="AudioStream" uid="uid://bgx3b35x2b530" path="res://assets/audio/glass_break_three.mp3" id="21_dj038"]
 [ext_resource type="PackedScene" uid="uid://dc646g4y71v5v" path="res://assets/kitchen/Plate.fbx" id="28_qmerw"]
 [ext_resource type="Script" path="res://scripts/kitchen_check.gd" id="28_rrjdr"]
 [ext_resource type="PackedScene" uid="uid://dvt1i6a774vcv" path="res://assets/shelf/Shelf B.fbx" id="32_qhhc2"]
@@ -170,6 +176,44 @@ size = Vector3(1, 9.67, 6.75)
 
 [sub_resource type="BoxMesh" id="BoxMesh_e8c8u"]
 size = Vector3(1, 9.67, 12.295)
+
+[sub_resource type="Animation" id="Animation_xv0x7"]
+resource_name = "fan_whirl"
+length = 0.2
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.0666667, 0.133333),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector3(0, 0, 0), Vector3(0, 1.25224, 0), Vector3(0, 2.07239, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_p0had"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0, 0, 0)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_d4ap1"]
+_data = {
+"RESET": SubResource("Animation_p0had"),
+"fan_whirl": SubResource("Animation_xv0x7")
+}
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_d0bis"]
 size = Vector3(13.9934, 7.6452, 12.6611)
@@ -609,6 +653,13 @@ mesh = SubResource("BoxMesh_e8c8u")
 
 [node name="RoomOne" type="Node3D" parent="."]
 
+[node name="LightSwitch" parent="RoomOne" instance=ExtResource("56_f3x1w")]
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, -11.7911, 2.08031, -2.76099)
+
+[node name="FlickeringCeilingLight" parent="RoomOne" instance=ExtResource("55_i8c2o")]
+transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, -15.5764, 6.95566, -9.75754)
+lights_on = false
+
 [node name="Alarm Clock" parent="RoomOne" instance=ExtResource("12_b576n")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -16.3085, 1.58015, -12.8638)
 
@@ -636,8 +687,35 @@ transform = Transform3D(-1.46433e-08, 0, 0.335, 0, 0.335, 0, -0.335, 0, -1.46433
 [node name="Wall Shelf A2" parent="RoomOne" instance=ExtResource("9_ujcsd")]
 transform = Transform3D(-1.46433e-08, 0, 0.335, 0, 0.335, 0, -0.335, 0, -1.46433e-08, -23.2069, 5.69689, -7.75122)
 
-[node name="Ceiling Fan" parent="RoomOne" instance=ExtResource("10_aaebg")]
+[node name="Ceiling Fan" parent="RoomOne" node_paths=PackedStringArray("observing_light") instance=ExtResource("10_aaebg")]
 transform = Transform3D(0.6, 0, 0, 0, 0.6, 0, 0, 0, 0.6, -18.9139, 6.46006, -9.08798)
+script = ExtResource("17_v0sn7")
+observing_light = NodePath("../FlickeringCeilingLight")
+
+[node name="breaking_particles" parent="RoomOne/Ceiling Fan" instance=ExtResource("18_vy2aq")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6.35963, -1.15732, 2.11547)
+
+[node name="FanWhoosh" type="AudioStreamPlayer3D" parent="RoomOne/Ceiling Fan"]
+transform = Transform3D(1.66667, 0, 0, 0, 1.66667, 0, 0, 0, 1.66667, 0.152321, -0.723241, -0.124357)
+stream = ExtResource("18_fmhk2")
+volume_db = -1.0
+
+[node name="GlassBreakOne" type="AudioStreamPlayer" parent="RoomOne/Ceiling Fan"]
+stream = ExtResource("19_qo6p4")
+volume_db = 24.0
+
+[node name="GlassBreakTwo" type="AudioStreamPlayer" parent="RoomOne/Ceiling Fan"]
+stream = ExtResource("20_yhvbi")
+volume_db = 24.0
+
+[node name="GlassBreakThree" type="AudioStreamPlayer" parent="RoomOne/Ceiling Fan"]
+stream = ExtResource("21_dj038")
+volume_db = 24.0
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="RoomOne/Ceiling Fan"]
+libraries = {
+"": SubResource("AnimationLibrary_d4ap1")
+}
 
 [node name="Table B" parent="RoomOne" instance=ExtResource("11_uv0js")]
 transform = Transform3D(0.655, 0, 0, 0, 0.655, 0, 0, 0, 0.655, -16.318, 0.862877, -12.9917)
@@ -953,9 +1031,8 @@ transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, -2.88517, 6.44732, 3.27
 transform = Transform3D(-0.495088, 0, 0.0699149, 0, 0.5, 0, -0.0699149, 0, -0.495088, -19.5225, 6.93875, 0.0628629)
 lights_on = false
 
-[node name="LightSwitch" parent="." node_paths=PackedStringArray("target_light") instance=ExtResource("56_f3x1w")]
+[node name="LightSwitch" parent="." instance=ExtResource("56_f3x1w")]
 transform = Transform3D(-0.990176, 0, 0.13983, 0, 1, 0, -0.13983, 0, -0.990176, -11, 2.27853, 1.71647)
-target_light = NodePath("../FlickeringCeilingLight")
 
 [connection signal="body_entered" from="RoomOne/RoomOneCheck" to="RoomOne/RoomOneCheck" method="_on_body_entered"]
 [connection signal="finished" from="MainHall/Telephone/Telephone/Demand" to="MainHall/Telephone" method="_on_demand_finished"]
