@@ -11,8 +11,8 @@ func _physics_process(delta):
 	if self.is_colliding():
 		if self.get_collider(0).is_in_group("interactable"):
 			can_interact = true
+			print("ye")
 	$"../../../Control/NonBlocker/InteractLabel".visible = can_interact
-	print("real")
 	
 	if can_interact and Input.is_action_just_pressed("interact"):
 		self.get_collider(0).used()

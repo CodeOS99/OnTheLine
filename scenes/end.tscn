@@ -1,4 +1,6 @@
-[gd_scene load_steps=3 format=3 uid="uid://b6k25dfoj55qr"]
+[gd_scene load_steps=4 format=3 uid="uid://b6k25dfoj55qr"]
+
+[ext_resource type="AudioStream" uid="uid://btegoqfh6jxvu" path="res://assets/audio/sam_end_speech.wav" id="1_behjv"]
 
 [sub_resource type="FastNoiseLite" id="FastNoiseLite_s5yic"]
 
@@ -14,6 +16,10 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+
+[node name="SamEndSpeech" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("1_behjv")
+autoplay = true
 
 [node name="TextureRect" type="TextureRect" parent="."]
 layout_mode = 1
