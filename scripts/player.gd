@@ -157,3 +157,4 @@ func initiate_fly_killing():
 func get_scared():
 	$Heartbeat.play()
 	$BreathingScary.play()
+	$Head/Camera3D.should_shake = true
