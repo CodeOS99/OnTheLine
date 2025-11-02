@@ -91,8 +91,8 @@ normal_texture = ExtResource("4_6usrr")
 ao_enabled = true
 ao_texture = ExtResource("2_m3qkn")
 
-[sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_p25cl"]
-points = PackedVector3Array(-30.3975, -0.2025, -17.1625, -30.3975, 0.2025, -17.1625, 30.3975, -0.2025, -17.1625, -30.3975, -0.2025, 17.1625, -30.3975, 0.2025, 17.1625, 30.3975, 0.2025, -17.1625, 30.3975, -0.2025, 17.1625, 30.3975, 0.2025, 17.1625)
+[sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_ftidw"]
+points = PackedVector3Array(-17.54, -0.2025, -17.54, -17.54, 0.2025, -17.54, 17.54, -0.2025, -17.54, -17.54, -0.2025, 17.54, -17.54, 0.2025, 17.54, 17.54, 0.2025, -17.54, 17.54, -0.2025, 17.54, 17.54, 0.2025, 17.54)
 
 [sub_resource type="BoxMesh" id="BoxMesh_w3xih"]
 size = Vector3(14.72, 1, 12.985)
@@ -570,8 +570,8 @@ skeleton = NodePath("../..")
 surface_material_override/0 = SubResource("StandardMaterial3D_dogp1")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="floor"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -12.822, 0, 0)
-shape = SubResource("ConvexPolygonShape3D_p25cl")
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6.00241, 0, 0.592626)
+shape = SubResource("ConvexPolygonShape3D_ftidw")
 
 [node name="MeshInstance3D2" type="MeshInstance3D" parent="floor"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.04732, -0.194659, 15.8788)
