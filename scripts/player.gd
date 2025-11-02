@@ -27,6 +27,8 @@ var went_in_bathroom := false
 var went_in_kitchen := false
 var went_in_balcony := false
 
+var end = false
+
 var got_call_once := false
 
 signal made_black
@@ -129,8 +131,12 @@ func make_white():
 
 func _on_animation_player_animation_finished(anim_name: StringName) -> void:
 	if anim_name == "make_black":
-		made_black.emit()
+		if not end:
+			made_black.emit()
+		else:
+			get_tree().change_scene_to_file("res://scenes/end.tscn")
 	if anim_name == "fly_sacrifice":
+		end = true
 		make_black()
 
 func initiate_fly_killing():
