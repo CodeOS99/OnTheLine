@@ -12,8 +12,6 @@ Click to swat
 
 ## UNFINISHED YET! This is kind of like a proof of concept.
 
-Not sure how the web version will work, preferably download it! Also play it in full screen.
-
 It has all the regular things you would expect in a horror game, specifically, loud noises and a (hopefully :D) scary atmosphere. Only one jumpscare(not visual)
 
 
@@ -21,5 +19,6 @@ It has all the regular things you would expect in a horror game, specifically, l
 Itch: https://codeos99.itch.io/on-the-line
 
 Youtube Demo: https://youtu.be/ArOM208SiOA
+
 
 
